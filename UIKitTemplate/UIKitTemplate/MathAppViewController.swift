@@ -49,17 +49,99 @@ final class MathAppViewController: UIViewController {
         borderColor: Constants.Button.Calc.borderColor
     )
 
-    private lazy var greetingAlert: UIAlertController = makeAlert(title: Constants.Alert.Greeting.title)
-    private lazy var calcInputAlert: UIAlertController = makeAlert(title: Constants.Alert.Calc.inputTitle)
-    private lazy var operationAlert: UIAlertController = makeAlert(title: Constants.Alert.Calc.operationTitle)
+    private lazy var greetingAlert: UIAlertController = {
+        var alert = makeAlert(title: Constants.Alert.Greeting.title)
+        alert.addTextField { $0.placeholder = Constants.Alert.Greeting.TextField.name.rawValue }
+
+        alert.addAction(UIAlertAction(
+            title: Constants.Alert.Greeting.Action.done.rawValue,
+            style: .default
+        ) { [unowned self] _ in
+            greetingLabel.text = "Приветствую, \(alert.textFields?.first?.text ?? "User")!"
+            view.addSubview(greetingLabel)
+            bg.frame = CGRect(
+                x: 0,
+                y: greetingLabel.frame.minY,
+                width: view.bounds.width,
+                height: view.bounds.height - greetingLabel.frame.minY
+            )
+        })
+        return alert
+    }()
+
+    private lazy var calcInputAlert: UIAlertController = {
+        var alert = makeAlert(title: Constants.Alert.Calc.inputTitle)
+        alert.addTextField { $0.placeholder = Constants.Alert.Calc.TextField.firstOperand.rawValue }
+        alert.addTextField { $0.placeholder = Constants.Alert.Calc.TextField.secondOperand.rawValue }
+
+        let chooseOprationAction = UIAlertAction(
+            title: Constants.Alert.Calc.InputAction.chooseOperation.rawValue,
+            style: .default
+        ) { [unowned self] _ in
+            if let fields = alert.textFields, fields.count == 2 {
+                if let firstOperand = Int(fields.first?.text ?? ""), let secondOperand = Int(fields.last?.text ?? "") {
+                    operands = (firstOperand, secondOperand)
+                    present(operationAlert, animated: true)
+                    return
+                }
+            }
+
+            resetOperands()
+            runCalculator()
+        }
+        let cancelAction = makeCancelAction { [unowned self] _ in resetOperands() }
+        alert.addAction(chooseOprationAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = chooseOprationAction
+        return alert
+    }()
+
+    private lazy var operationAlert: UIAlertController = {
+        var alert = makeAlert(title: Constants.Alert.Calc.operationTitle)
+        for operationCase in Constants.Alert.Calc.OperationAction.allCases {
+            let action = UIAlertAction(
+                title: operationCase.rawValue,
+                style: .default
+            ) { [unowned self] action in
+                if let operationCase = Constants.Alert.Calc.OperationAction(rawValue: action.title ?? "") {
+                    let result: String
+                    switch operationCase {
+                    case .sum:
+                        result = String(calculator.sum(operands.first, operands.second))
+                    case .substract:
+                        result = String(calculator.substract(operands.first, operands.second))
+                    case .multiply:
+                        result = String(calculator.multiply(operands.first, by: operands.second))
+                    case .divide:
+                        result = String(format: "%.2f", calculator.divide(operands.first, by: operands.second))
+                    }
+
+                    calcResultAlert.message = result
+                    present(calcResultAlert, animated: true)
+                }
+            }
+            alert.addAction(action)
+        }
+        let cancelAction = makeCancelAction { [unowned self] _ in resetOperands() }
+        alert.addAction(cancelAction)
+        alert.preferredAction = cancelAction
+        return alert
+    }()
+
+    private lazy var calcResultAlert: UIAlertController = {
+        var alert = makeAlert(title: Constants.Alert.Calc.resultTitle)
+        let cancelAction = makeCancelAction { [unowned self] _ in resetOperands() }
+        let okAction = makeOkAction { [unowned self] _ in resetOperands() }
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        alert.preferredAction = okAction
+        return alert
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(bg)
-
-        prepareGreetingAlert()
-        prepareInputCalcAlert()
         prepareButtons()
     }
 
@@ -86,79 +168,13 @@ final class MathAppViewController: UIViewController {
         calcButton.addTarget(self, action: #selector(runCalculator), for: .touchUpInside)
     }
 
-    private func prepareGreetingAlert() {
-        greetingAlert.addTextField { $0.placeholder = Constants.Alert.Greeting.TextField.name.rawValue }
-
-        greetingAlert.addAction(UIAlertAction(
-            title: Constants.Alert.Greeting.Action.done.rawValue,
-            style: .default
-        ) { [unowned self] _ in
-            greetingLabel.text = "Приветствую, \(greetingAlert.textFields?.first?.text ?? "User")!"
-            view.addSubview(greetingLabel)
-            bg.frame = CGRect(
-                x: 0,
-                y: greetingLabel.frame.minY,
-                width: view.bounds.width,
-                height: view.bounds.height - greetingLabel.frame.minY
-            )
-        })
-    }
-
-    private func prepareInputCalcAlert() {
-        calcInputAlert.addTextField { $0.placeholder = Constants.Alert.Calc.TextField.firstOperand.rawValue }
-        calcInputAlert.addTextField { $0.placeholder = Constants.Alert.Calc.TextField.secondOperand.rawValue }
-
-        let chooseOprationAction = UIAlertAction(
-            title: Constants.Alert.Calc.InputAction.chooseOperation.rawValue,
-            style: .default
-        ) { [unowned self] _ in
-            if let fields = calcInputAlert.textFields, fields.count == 2 {
-                if let firstOperand = Int(fields.first?.text ?? ""), let secondOperand = Int(fields.last?.text ?? "") {
-                    operands = (firstOperand, secondOperand)
-                    prepareOperationAlert()
-                    present(operationAlert, animated: true)
-                    return
-                }
-            }
-
-            runCalculator()
-        }
-        let cancelAction = UIAlertAction(
-            title: Constants.Alert.cancelTitle,
-            style: .default
-        )
-        calcInputAlert.addAction(chooseOprationAction)
-        calcInputAlert.addAction(cancelAction)
-    }
-
-    private func prepareOperationAlert() {
-        for operationCase in Constants.Alert.Calc.OperationAction.allCases {
-            let action = UIAlertAction(
-                title: operationCase.rawValue,
-                style: .default
-            ) { [unowned self] action in
-                if let operationCase = Constants.Alert.Calc.OperationAction(rawValue: action.title ?? "") {
-                    let result: String
-                    switch operationCase {
-                    case .sum:
-                        result = String(calculator.sum(operands.first, operands.second))
-                    case .substract:
-                        result = String(calculator.substract(operands.first, operands.second))
-                    case .multiply:
-                        result = String(calculator.multiply(operands.first, by: operands.second))
-                    case .divide:
-                        result = String(format: "%.2f", calculator.divide(operands.first, by: operands.second))
-                    }
-                    // prepare next alert with result
-                    print(result)
-                }
-            }
-            operationAlert.addAction(action)
-        }
-    }
-
     @objc private func runCalculator() {
         present(calcInputAlert, animated: true)
+    }
+
+    private func resetOperands() {
+        operands = (0, 0)
+        calcInputAlert.textFields?.forEach { $0.text = "" }
     }
 
     private func makeAlert(title: String, message: String? = nil) -> UIAlertController {
@@ -178,6 +194,14 @@ final class MathAppViewController: UIViewController {
         config.attributedTitle = attributedTitle
         let button = UIButton(configuration: config)
         return button
+    }
+
+    private func makeCancelAction(_ completionHandler: ((UIAlertAction) -> ())? = nil) -> UIAlertAction {
+        UIAlertAction(title: Constants.Alert.cancelTitle, style: .default, handler: completionHandler)
+    }
+
+    private func makeOkAction(_ completionHandler: ((UIAlertAction) -> ())? = nil) -> UIAlertAction {
+        UIAlertAction(title: Constants.Alert.okTitle, style: .default, handler: completionHandler)
     }
 
     private enum Constants {
