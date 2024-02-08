@@ -5,6 +5,9 @@ import UIKit
 
 /// MathApp main screen
 final class MathAppViewController: UIViewController {
+    private let calculator = Calculator()
+    private var operands = (first: 0, second: 0)
+
     private var safeAreaInsents: UIEdgeInsets {
         if #available(iOS 15.0, *) {
             let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
@@ -15,13 +18,13 @@ final class MathAppViewController: UIViewController {
         return .zero
     }
 
-    lazy var bg: UIImageView = {
+    private lazy var bg: UIImageView = {
         let image = UIImageView(image: UIImage(named: "bg"))
         image.frame = view.bounds
         return image
     }()
 
-    lazy var greetingLabel: UILabel = {
+    private lazy var greetingLabel: UILabel = {
         let label = UILabel()
         label.text = "Приветствую, "
         label.textAlignment = .center
@@ -34,7 +37,7 @@ final class MathAppViewController: UIViewController {
         return label
     }()
 
-    lazy var guessNumButton: UIButton = makeButton(
+    private lazy var guessNumButton: UIButton = makeButton(
         title: Constants.Button.GuessNum.label,
         color: Constants.Button.GuessNum.color,
         borderColor: Constants.Button.GuessNum.borderColor
@@ -46,10 +49,9 @@ final class MathAppViewController: UIViewController {
         borderColor: Constants.Button.Calc.borderColor
     )
 
-    lazy var greetingAlert: UIAlertController = {
-        let alert = makeAlert(title: Constants.Alert.Greeting.title)
-        return alert
-    }()
+    private lazy var greetingAlert: UIAlertController = makeAlert(title: Constants.Alert.Greeting.title)
+    private lazy var calcInputAlert: UIAlertController = makeAlert(title: Constants.Alert.Calc.inputTitle)
+    private lazy var operationAlert: UIAlertController = makeAlert(title: Constants.Alert.Calc.operationTitle)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,7 @@ final class MathAppViewController: UIViewController {
         view.addSubview(bg)
 
         prepareGreetingAlert()
+        prepareInputCalcAlert()
         prepareButtons()
     }
 
@@ -79,34 +82,83 @@ final class MathAppViewController: UIViewController {
             x: view.center.x - Constants.Button.Calc.offset.x,
             y: view.center.y - Constants.Button.Calc.offset.y
         )
+
+        calcButton.addTarget(self, action: #selector(runCalculator), for: .touchUpInside)
     }
 
     private func prepareGreetingAlert() {
-        greetingAlert.addTextField { nameTextField in
-            nameTextField.placeholder = Constants.Alert.Greeting.TextField.name.rawValue
-        }
+        greetingAlert.addTextField { $0.placeholder = Constants.Alert.Greeting.TextField.name.rawValue }
 
-        for action in Constants.Alert.Greeting.Action.allCases {
-            greetingAlert.addAction(UIAlertAction(
-                title: action.rawValue,
-                style: .default,
-                handler: { [unowned self] action in
-                    if let title = action.title, let actionCase = Constants.Alert.Greeting.Action(rawValue: title) {
-                        switch actionCase {
-                        case .done:
-                            greetingLabel.text = "Приветствую, \(greetingAlert.textFields?.first?.text ?? "User")!"
-                            view.addSubview(greetingLabel)
-                            bg.frame = CGRect(
-                                x: 0,
-                                y: greetingLabel.frame.minY,
-                                width: view.bounds.width,
-                                height: view.bounds.height - greetingLabel.frame.minY
-                            )
-                        }
-                    }
+        greetingAlert.addAction(UIAlertAction(
+            title: Constants.Alert.Greeting.Action.done.rawValue,
+            style: .default
+        ) { [unowned self] _ in
+            greetingLabel.text = "Приветствую, \(greetingAlert.textFields?.first?.text ?? "User")!"
+            view.addSubview(greetingLabel)
+            bg.frame = CGRect(
+                x: 0,
+                y: greetingLabel.frame.minY,
+                width: view.bounds.width,
+                height: view.bounds.height - greetingLabel.frame.minY
+            )
+        })
+    }
+
+    private func prepareInputCalcAlert() {
+        calcInputAlert.addTextField { $0.placeholder = Constants.Alert.Calc.TextField.firstOperand.rawValue }
+        calcInputAlert.addTextField { $0.placeholder = Constants.Alert.Calc.TextField.secondOperand.rawValue }
+
+        let chooseOprationAction = UIAlertAction(
+            title: Constants.Alert.Calc.InputAction.chooseOperation.rawValue,
+            style: .default
+        ) { [unowned self] _ in
+            if let fields = calcInputAlert.textFields, fields.count == 2 {
+                if let firstOperand = Int(fields.first?.text ?? ""), let secondOperand = Int(fields.last?.text ?? "") {
+                    operands = (firstOperand, secondOperand)
+                    prepareOperationAlert()
+                    present(operationAlert, animated: true)
+                    return
                 }
-            ))
+            }
+
+            runCalculator()
         }
+        let cancelAction = UIAlertAction(
+            title: Constants.Alert.cancelTitle,
+            style: .default
+        )
+        calcInputAlert.addAction(chooseOprationAction)
+        calcInputAlert.addAction(cancelAction)
+    }
+
+    private func prepareOperationAlert() {
+        for operationCase in Constants.Alert.Calc.OperationAction.allCases {
+            let action = UIAlertAction(
+                title: operationCase.rawValue,
+                style: .default
+            ) { [unowned self] action in
+                if let operationCase = Constants.Alert.Calc.OperationAction(rawValue: action.title ?? "") {
+                    let result: String
+                    switch operationCase {
+                    case .sum:
+                        result = String(calculator.sum(operands.first, operands.second))
+                    case .substract:
+                        result = String(calculator.substract(operands.first, operands.second))
+                    case .multiply:
+                        result = String(calculator.multiply(operands.first, by: operands.second))
+                    case .divide:
+                        result = String(format: "%.2f", calculator.divide(operands.first, by: operands.second))
+                    }
+                    // prepare next alert with result
+                    print(result)
+                }
+            }
+            operationAlert.addAction(action)
+        }
+    }
+
+    @objc private func runCalculator() {
+        present(calcInputAlert, animated: true)
     }
 
     private func makeAlert(title: String, message: String? = nil) -> UIAlertController {
@@ -130,6 +182,9 @@ final class MathAppViewController: UIViewController {
 
     private enum Constants {
         enum Alert {
+            static let cancelTitle = "Отмена"
+            static let okTitle = "Ок"
+
             enum Greeting {
                 static let title = "Пожалуйста, представьтесь"
                 enum Action: String, CaseIterable {
@@ -138,6 +193,27 @@ final class MathAppViewController: UIViewController {
 
                 enum TextField: String {
                     case name = "Введите ваше имя"
+                }
+            }
+
+            enum Calc {
+                static let inputTitle = "Введите ваши числа"
+                static let operationTitle = "Выберите математическую операцию"
+                static let resultTitle = "Ваш результат"
+                enum InputAction: String {
+                    case chooseOperation = "Выбрать операцию"
+                }
+
+                enum OperationAction: String, CaseIterable {
+                    case sum = "Сложить"
+                    case substract = "Вычесть"
+                    case multiply = "Умножить"
+                    case divide = "Разделить"
+                }
+
+                enum TextField: String {
+                    case firstOperand = "Число 1"
+                    case secondOperand = "Число 2"
                 }
             }
         }
