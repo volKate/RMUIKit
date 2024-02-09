@@ -166,7 +166,7 @@
         <!--Кафе Алиса-->
         <scene sceneID="OZy-Nk-e13">
             <objects>
-                <viewController id="WGk-O5-Ea8" sceneMemberID="viewController">
+                <viewController id="WGk-O5-Ea8" customClass="CafeViewController" customModule="UIKitTemplate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="isO-76-7EF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -228,7 +228,7 @@
                                     <constraint firstAttribute="height" constant="25" id="bac-H0-Gkz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="border" translatesAutoresizingMaskIntoConstraints="NO" id="JvU-V3-Cqv">
                                 <rect key="frame" x="16" y="250" width="361" height="32"/>
@@ -249,38 +249,55 @@
                                     <constraint firstAttribute="height" constant="25" id="ir0-3N-Q82"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mrk-ES-0Wq">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mrk-ES-0Wq">
                                 <rect key="frame" x="308" y="437" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChangedValue:" destination="WGk-O5-Ea8" eventType="valueChanged" id="TV3-uM-RON"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjD-Ck-Y0R">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjD-Ck-Y0R">
                                 <rect key="frame" x="308" y="492" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChangedValue:" destination="WGk-O5-Ea8" eventType="valueChanged" id="dYi-Ep-qsd"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWE-Gs-fmG">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aWE-Gs-fmG">
                                 <rect key="frame" x="308" y="547" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChangedValue:" destination="WGk-O5-Ea8" eventType="valueChanged" id="d2g-vv-ko7"/>
+                                </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAX-al-MQG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpz-Ma-rD7">
                                 <rect key="frame" x="16" y="711" width="361" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="JLf-xo-AFy"/>
+                                    <constraint firstAttribute="height" constant="44" id="pzP-aD-mHL"/>
                                 </constraints>
                                 <color key="tintColor" name="blueMain"/>
-                                <state key="normal" title="Button"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Выставить счет">
+                                            <attributes>
+                                                <font key="NSFont" size="16" name="Verdana"/>
+                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="large">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Выставить счет">
                                             <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="16" name="Verdana-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                <font key="NSOriginalFont" size="12" name="Helvetica"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="loginButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6HP-IE-skm"/>
+                                    <action selector="checkoutTouched:" destination="WGk-O5-Ea8" eventType="touchUpInside" id="dRb-zO-7E6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -293,21 +310,20 @@
                             <constraint firstItem="7bS-vX-zJJ" firstAttribute="leading" secondItem="isO-76-7EF" secondAttribute="leadingMargin" id="6bO-gF-d2b"/>
                             <constraint firstItem="6NG-vR-ko8" firstAttribute="top" secondItem="eS5-hD-R33" secondAttribute="bottom" constant="5" id="7NL-hs-dJ2"/>
                             <constraint firstItem="Gr4-PE-eeh" firstAttribute="centerY" secondItem="Mrk-ES-0Wq" secondAttribute="centerY" id="9nK-YJ-Zqj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tAX-al-MQG" secondAttribute="trailing" id="AAE-Gk-DBL"/>
                             <constraint firstAttribute="leadingMargin" secondItem="2Lf-S1-U6x" secondAttribute="leading" id="ERh-SU-I1r"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aWE-Gs-fmG" secondAttribute="trailing" constant="20" id="FiH-pS-UeC"/>
                             <constraint firstItem="aWE-Gs-fmG" firstAttribute="top" secondItem="cjD-Ck-Y0R" secondAttribute="bottom" constant="24" id="Itc-t3-MTt"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Krb-ZA-Z6U" secondAttribute="leading" id="J4F-Lr-O1A"/>
                             <constraint firstItem="2Lf-S1-U6x" firstAttribute="bottom" secondItem="6NG-vR-ko8" secondAttribute="bottom" id="KbQ-9b-pAA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Krb-ZA-Z6U" secondAttribute="trailing" id="LfE-JT-wbU"/>
+                            <constraint firstItem="cpz-Ma-rD7" firstAttribute="leading" secondItem="isO-76-7EF" secondAttribute="leadingMargin" id="NQe-kj-Lgi"/>
                             <constraint firstItem="JvU-V3-Cqv" firstAttribute="top" secondItem="mrh-Nh-ZAf" secondAttribute="bottom" constant="5" id="O0c-cn-j4g"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6NG-vR-ko8" secondAttribute="leading" id="Opt-U1-XdJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HNe-2N-vMk" secondAttribute="trailing" id="Q4G-qL-eLf"/>
                             <constraint firstAttribute="leadingMargin" secondItem="HNe-2N-vMk" secondAttribute="leading" id="QSF-oA-siE"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="tAX-al-MQG" secondAttribute="leading" id="VCR-h3-tXX"/>
+                            <constraint firstItem="4cL-d4-HgU" firstAttribute="bottom" secondItem="cpz-Ma-rD7" secondAttribute="bottom" constant="63" id="Usj-vx-9HS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Lf-S1-U6x" secondAttribute="trailing" id="beJ-xh-sK0"/>
                             <constraint firstAttribute="leadingMargin" secondItem="xh8-Zp-3gt" secondAttribute="leading" id="bg2-NI-Mgl"/>
-                            <constraint firstItem="4cL-d4-HgU" firstAttribute="bottom" secondItem="tAX-al-MQG" secondAttribute="bottom" constant="63" id="cM1-n1-TWm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aWE-Gs-fmG" secondAttribute="trailing" constant="20" id="cdO-Ez-ktl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mrh-Nh-ZAf" secondAttribute="trailing" id="du7-Kq-vM9"/>
                             <constraint firstItem="HNe-2N-vMk" firstAttribute="top" secondItem="JvU-V3-Cqv" secondAttribute="bottom" constant="20" id="esy-vz-6Ah"/>
@@ -332,10 +348,19 @@
                             <constraint firstAttribute="trailingMargin" secondItem="JvU-V3-Cqv" secondAttribute="trailing" id="yAe-0p-wVN"/>
                             <constraint firstItem="cjD-Ck-Y0R" firstAttribute="top" secondItem="Mrk-ES-0Wq" secondAttribute="bottom" constant="24" id="ygf-ux-K5G"/>
                             <constraint firstItem="pw1-P5-0yB" firstAttribute="leading" secondItem="isO-76-7EF" secondAttribute="leadingMargin" id="z6s-XT-NjF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cpz-Ma-rD7" secondAttribute="trailing" id="zVU-EB-92m"/>
                             <constraint firstItem="aWE-Gs-fmG" firstAttribute="leading" secondItem="7bS-vX-zJJ" secondAttribute="trailing" constant="20" id="zwN-BM-mYQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Кафе Алиса" id="r6x-fh-lcK"/>
+                    <connections>
+                        <outletCollection property="textFields" destination="NvB-T3-5kA" collectionClass="NSMutableArray" id="IX3-6R-4Yx"/>
+                        <outletCollection property="reservationSettings" destination="cjD-Ck-Y0R" collectionClass="NSMutableArray" id="gQG-PG-1vW"/>
+                        <outletCollection property="reservationSettings" destination="Mrk-ES-0Wq" collectionClass="NSMutableArray" id="VPz-Hl-9w3"/>
+                        <outletCollection property="reservationSettings" destination="aWE-Gs-fmG" collectionClass="NSMutableArray" id="rvA-cV-MsA"/>
+                        <outletCollection property="textFields" destination="2Lf-S1-U6x" collectionClass="NSMutableArray" id="wt3-RA-id6"/>
+                        <outletCollection property="textFields" destination="Krb-ZA-Z6U" collectionClass="NSMutableArray" id="AJX-He-usm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drl-un-hso" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

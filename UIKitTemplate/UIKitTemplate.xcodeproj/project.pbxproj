@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA0CBE4A2B75EB1B00ADA1DF /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CBE492B75EB1B00ADA1DF /* CafeViewController.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* AuthViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA0CBE492B75EB1B00ADA1DF /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				DAFE7CEF2B71802900F71686 /* AppDelegate.swift */,
 				DAFE7CF12B71802900F71686 /* SceneDelegate.swift */,
 				DAFE7CF32B71802900F71686 /* AuthViewController.swift */,
+				DA0CBE492B75EB1B00ADA1DF /* CafeViewController.swift */,
 				DAFE7CF52B71802900F71686 /* Main.storyboard */,
 				DAFE7CF82B71802C00F71686 /* Assets.xcassets */,
 				DAFE7CFA2B71802C00F71686 /* LaunchScreen.storyboard */,
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAFE7CF42B71802900F71686 /* AuthViewController.swift in Sources */,
+				DA0CBE4A2B75EB1B00ADA1DF /* CafeViewController.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
 			);
