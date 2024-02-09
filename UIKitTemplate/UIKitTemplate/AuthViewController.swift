@@ -35,7 +35,11 @@ class AuthViewController: UIViewController {
         }
     }
 
-    @IBAction func loginButtonTouched(_ sender: UIButton) {}
+    @IBAction func loginButtonTouched(_ sender: UIButton) {
+        if isEnabled {
+            performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
 
     @IBAction func eyeButtonTouched(_ sender: UIButton) {
         passwordField.isSecureTextEntry.toggle()

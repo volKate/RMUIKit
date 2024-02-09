@@ -24,7 +24,9 @@ class CafeViewController: UIViewController {
     @IBAction func checkoutTouched(_ sender: Any) {
         let alert = UIAlertController(title: "Выставить счет?", message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
-        let checkoutAction = UIAlertAction(title: "Чек", style: .default)
+        let checkoutAction = UIAlertAction(title: "Чек", style: .default) { [unowned self] _ in
+            performSegue(withIdentifier: "checkoutSegue", sender: self)
+        }
         alert.addAction(cancelAction)
         alert.addAction(checkoutAction)
         alert.preferredAction = checkoutAction
