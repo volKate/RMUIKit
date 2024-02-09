@@ -7,7 +7,9 @@ import UIKit
 final class MathAppViewController: UIViewController {
     private let calculator = Calculator()
     private var operands = (first: 0, second: 0)
+    private var guessNum = 0
 
+    // SafeArea
     private var safeAreaInsents: UIEdgeInsets {
         if #available(iOS 15.0, *) {
             let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
@@ -37,6 +39,7 @@ final class MathAppViewController: UIViewController {
         return label
     }()
 
+    // Buttons
     private lazy var guessNumButton: UIButton = makeButton(
         title: Constants.Button.GuessNum.label,
         color: Constants.Button.GuessNum.color,
@@ -49,6 +52,7 @@ final class MathAppViewController: UIViewController {
         borderColor: Constants.Button.Calc.borderColor
     )
 
+    // Alerts
     private lazy var greetingAlert: UIAlertController = {
         var alert = makeAlert(title: Constants.Alert.Greeting.title)
         alert.addTextField { $0.placeholder = Constants.Alert.Greeting.TextField.name.rawValue }
@@ -138,6 +142,26 @@ final class MathAppViewController: UIViewController {
         return alert
     }()
 
+    private lazy var guessInputAlert: UIAlertController = makeGuessAlert(title: Constants.Alert.Guess.inputTitle)
+    private lazy var guessIsLessAlert: UIAlertController = makeGuessAlert(
+        title: Constants.Alert.Guess.tryArainTitle,
+        message: Constants.Alert.Guess.isLessMessage
+    )
+    private lazy var guessIsGraterAlert: UIAlertController = makeGuessAlert(
+        title: Constants.Alert.Guess.tryArainTitle,
+        message: Constants.Alert.Guess.isGraterMessage
+    )
+    private lazy var guessCongratsAlert: UIAlertController = {
+        var alert = makeAlert(
+            title: Constants.Alert.Guess.congratsTitle,
+            message: Constants.Alert.Guess.congratsMessage
+        )
+        let okAction = makeOkAction { [unowned self] _ in resetOperands() }
+        alert.addAction(okAction)
+        alert.preferredAction = okAction
+        return alert
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -166,10 +190,29 @@ final class MathAppViewController: UIViewController {
         )
 
         calcButton.addTarget(self, action: #selector(runCalculator), for: .touchUpInside)
+        guessNumButton.addTarget(self, action: #selector(runGuessGame), for: .touchUpInside)
     }
 
     @objc private func runCalculator() {
         present(calcInputAlert, animated: true)
+    }
+
+    @objc private func runGuessGame() {
+        resetGuessInput()
+        guessNum = Int.random(in: 1 ... 10)
+        present(guessInputAlert, animated: true)
+    }
+
+    private func checkGuessNum(_ num: Int) {
+        if num < 1 || num > 10 {
+            runGuessGame()
+        } else if num == guessNum {
+            present(guessCongratsAlert, animated: true)
+        } else if num < guessNum {
+            present(guessIsLessAlert, animated: true)
+        } else {
+            present(guessIsGraterAlert, animated: true)
+        }
     }
 
     private func resetOperands() {
@@ -177,6 +220,11 @@ final class MathAppViewController: UIViewController {
         calcInputAlert.textFields?.forEach { $0.text = "" }
     }
 
+    private func resetGuessInput() {
+        guessInputAlert.textFields?.forEach { $0.text = "" }
+    }
+
+    // Factories
     private func makeAlert(title: String, message: String? = nil) -> UIAlertController {
         UIAlertController(title: title, message: message, preferredStyle: .alert)
     }
@@ -196,6 +244,20 @@ final class MathAppViewController: UIViewController {
         return button
     }
 
+    private func makeGuessAlert(title: String, message: String? = nil) -> UIAlertController {
+        let alert = makeAlert(title: title, message: message)
+        alert.addAction(makeCancelAction { [unowned self] _ in
+            resetGuessInput()
+        })
+        alert.addAction(makeOkAction { [unowned self, unowned alert] _ in
+            if let num = Int(alert.textFields?.first?.text ?? "") {
+                checkGuessNum(num)
+            }
+        })
+        alert.addTextField { $0.placeholder = Constants.Alert.Guess.textFieldPlaceholder }
+        return alert
+    }
+
     private func makeCancelAction(_ completionHandler: ((UIAlertAction) -> ())? = nil) -> UIAlertAction {
         UIAlertAction(title: Constants.Alert.cancelTitle, style: .default, handler: completionHandler)
     }
@@ -203,6 +265,8 @@ final class MathAppViewController: UIViewController {
     private func makeOkAction(_ completionHandler: ((UIAlertAction) -> ())? = nil) -> UIAlertAction {
         UIAlertAction(title: Constants.Alert.okTitle, style: .default, handler: completionHandler)
     }
+
+    // MARK: - Constants
 
     private enum Constants {
         enum Alert {
@@ -239,6 +303,16 @@ final class MathAppViewController: UIViewController {
                     case firstOperand = "Число 1"
                     case secondOperand = "Число 2"
                 }
+            }
+
+            enum Guess {
+                static let inputTitle = "Угадай число от 1 до 10"
+                static let textFieldPlaceholder = "Введите число"
+                static let tryArainTitle = "Попробуйте еще раз"
+                static let isLessMessage = "Вы ввели слишком маленькое число"
+                static let isGraterMessage = "Вы ввели слишком большое число"
+                static let congratsTitle = "Поздравляю!"
+                static let congratsMessage = "Вы угадали"
             }
         }
 
