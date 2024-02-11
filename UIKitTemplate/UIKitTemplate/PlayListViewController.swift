@@ -21,11 +21,35 @@ final class PlayListViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let tracks = [
-        TrackList.letItBe: Track(name: "Let it be", artist: "The Beatles", audioFileName: "letItBe"),
-        TrackList.yesterday: Track(name: "Yesterday", artist: "The Beatles", audioFileName: "yesterday"),
-        TrackList.showMustGoOn: Track(name: "The Show Must Go On", artist: "Queen", audioFileName: "showMustGoOn")
+    private var tracks = [
+        TrackList.letItBe: Track(
+            name: "Let it be",
+            artist: "The Beatles",
+            audioFileName: "letItBe",
+            albumCoverName: "letItBeCover"
+        ),
+        TrackList.yesterday: Track(
+            name: "Yesterday",
+            artist: "The Beatles",
+            audioFileName: "yesterday",
+            albumCoverName: "yesterdayCover"
+        ),
+        TrackList.showMustGoOn: Track(
+            name: "The Show Must Go On",
+            artist: "Queen",
+            audioFileName: "showMustGoOn",
+            albumCoverName: "showMustGoOnCover"
+        )
     ]
+
+    // MARK: - Life Cycle
+
+    override func viewDidLoad() {
+        tracks[.letItBe]?.nextTrack = tracks[.yesterday]
+        tracks[.yesterday]?.nextTrack = tracks[.showMustGoOn]
+        tracks[.yesterday]?.prevTrack = tracks[.letItBe]
+        tracks[.showMustGoOn]?.prevTrack = tracks[.yesterday]
+    }
 
     // MARK: - Public Methods
 
@@ -35,10 +59,14 @@ final class PlayListViewController: UIViewController {
         switch sender {
         case letItBeTrack:
             songPlayerVC.track = tracks[.letItBe]
+            songPlayerVC.track?.nextTrack = tracks[.yesterday]
         case yesterdayTrack:
             songPlayerVC.track = tracks[.yesterday]
+            songPlayerVC.track?.nextTrack = tracks[.showMustGoOn]
+            songPlayerVC.track?.prevTrack = tracks[.letItBe]
         case showMustGoOnTrack:
             songPlayerVC.track = tracks[.showMustGoOn]
+            songPlayerVC.track?.prevTrack = tracks[.yesterday]
         default:
             return
         }

@@ -13,12 +13,11 @@ final class SongPlayerViewController: UIViewController {
     @IBOutlet private var trackProgressSlider: UISlider!
     @IBOutlet private var timeLeftLabel: UILabel!
     @IBOutlet private var playPauseButton: UIButton!
+    @IBOutlet var albumCoverImage: UIImageView!
 
     // MARK: - Public Properties
 
     var track: Track?
-    var nextTrack: Track?
-    var prevTrack: Track?
 
     // MARK: - Private Properties
 
@@ -43,6 +42,7 @@ final class SongPlayerViewController: UIViewController {
     private func setupPlayer() {
         trackNameLabel.text = track?.name
         trackArtistLabel.text = track?.artist
+        albumCoverImage.image = UIImage(named: track?.albumCoverName ?? "")
 
         if let trackAudioFile = track?.audioFileName, let url = Bundle.main.url(
             forResource: trackAudioFile,
@@ -71,8 +71,6 @@ final class SongPlayerViewController: UIViewController {
             }
         }
     }
-
-    private func playNext() {}
 
     private func updateProgressUI() {
         if let player {
@@ -106,6 +104,23 @@ final class SongPlayerViewController: UIViewController {
             let newTime = Double(sender.value) * player.duration
             player.currentTime = newTime
             setTimer()
+        }
+    }
+
+    @IBAction func playNext(_ sender: UIButton) {
+        print(track?.name ?? "", track?.nextTrack?.name ?? "")
+        if let nextTrack = track?.nextTrack {
+            timer?.invalidate()
+            track = nextTrack
+            setupPlayer()
+        }
+    }
+
+    @IBAction func playPrev(_ sender: UIButton) {
+        if let prevTrack = track?.prevTrack {
+            timer?.invalidate()
+            track = prevTrack
+            setupPlayer()
         }
     }
 
