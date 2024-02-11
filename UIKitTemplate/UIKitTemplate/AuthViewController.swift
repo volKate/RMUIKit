@@ -168,7 +168,7 @@ final class AuthViewController: UIViewController {
     }
 
     @objc private func login() {
-        let birthdaysVC = BirthdaysViewController()
+        let birthdaysVC = RemindersListViewController()
         navigationController?.pushViewController(birthdaysVC, animated: true)
     }
 
