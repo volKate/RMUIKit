@@ -5,11 +5,27 @@ import UIKit
 
 /// VC with the list of songs in library
 final class PlayListViewController: UIViewController {
+    // MARK: - Constants
+
+    enum TrackList {
+        case letItBe
+        case yesterday
+        case showMustGoOn
+    }
+
     // MARK: - IBOutlets
 
     @IBOutlet private var letItBeTrack: UIView!
     @IBOutlet private var yesterdayTrack: UIView!
     @IBOutlet private var showMustGoOnTrack: UIView!
+
+    // MARK: - Private Properties
+
+    private let tracks = [
+        TrackList.letItBe: Track(name: "Let it be", artist: "The Beatles", audioFileName: "letItBe"),
+        TrackList.yesterday: Track(name: "Yesterday", artist: "The Beatles", audioFileName: "yesterday"),
+        TrackList.showMustGoOn: Track(name: "The Show Must Go On", artist: "Queen", audioFileName: "showMustGoOn")
+    ]
 
     // MARK: - Public Methods
 
@@ -18,11 +34,11 @@ final class PlayListViewController: UIViewController {
               let sender = sender as? UIView else { return }
         switch sender {
         case letItBeTrack:
-            songPlayerVC.trackName = "Let it be"
+            songPlayerVC.track = tracks[.letItBe]
         case yesterdayTrack:
-            songPlayerVC.trackName = "Yesterday"
+            songPlayerVC.track = tracks[.yesterday]
         case showMustGoOnTrack:
-            songPlayerVC.trackName = "Show Must Go On"
+            songPlayerVC.track = tracks[.showMustGoOn]
         default:
             return
         }

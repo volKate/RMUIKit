@@ -241,11 +241,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3V2-BB-t4e" customClass="PlayerSlider" customModule="UIKitTemplate" customModuleProvider="target">
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3V2-BB-t4e" customClass="PlayerSlider" customModule="UIKitTemplate" customModuleProvider="target">
                                         <rect key="frame" x="18" y="108" width="275" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="maximumTrackTintColor" name="whiteOpacity06"/>
+                                        <connections>
+                                            <action selector="rewindTrack:" destination="pgW-1X-WAf" eventType="valueChanged" id="ebl-pF-FID"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-04:03" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT5-bD-Iyc" userLabel="timeLeft">
                                         <rect key="frame" x="300" y="101" width="56" height="20"/>
@@ -254,10 +257,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="fzM-Iq-cja">
-                                        <rect key="frame" x="165" y="148" width="45" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="playNext" translatesAutoresizingMaskIntoConstraints="NO" id="pb9-17-Bc6">
                                         <rect key="frame" x="230" y="158" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -293,6 +292,15 @@
                                             </attributedString>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzm-WU-PG8" userLabel="playButton">
+                                        <rect key="frame" x="165" y="148" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="pause"/>
+                                        <connections>
+                                            <action selector="playPauseSong:" destination="pgW-1X-WAf" eventType="touchUpInside" id="zgS-Xw-2gn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" name="purpleSecondary"/>
@@ -338,6 +346,9 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="playPauseButton" destination="Yzm-WU-PG8" id="RJa-XJ-BtR"/>
+                        <outlet property="timeLeftLabel" destination="XT5-bD-Iyc" id="Jjx-s5-x2t"/>
+                        <outlet property="trackArtistLabel" destination="42f-zc-m5f" id="FlR-MA-uNA"/>
                         <outlet property="trackNameLabel" destination="fWi-lj-J0a" id="nHZ-Hu-aUI"/>
                         <outlet property="trackProgressSlider" destination="3V2-BB-t4e" id="aKV-jF-bhb"/>
                     </connections>
@@ -376,7 +387,7 @@
     <resources>
         <image name="letItBeCover" width="75" height="75"/>
         <image name="paperPlane" width="21" height="18"/>
-        <image name="play" width="46" height="46"/>
+        <image name="pause" width="46" height="46"/>
         <image name="playNext" width="24" height="24"/>
         <image name="playPrev" width="24" height="24"/>
         <image name="playerBg" width="375" height="763"/>
