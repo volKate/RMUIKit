@@ -13,7 +13,8 @@ final class SongPlayerViewController: UIViewController {
     @IBOutlet private var trackProgressSlider: UISlider!
     @IBOutlet private var timeLeftLabel: UILabel!
     @IBOutlet private var playPauseButton: UIButton!
-    @IBOutlet var albumCoverImage: UIImageView!
+    @IBOutlet private var albumCoverImage: UIImageView!
+    @IBOutlet private var volumeSlider: PlayerSlider!
 
     // MARK: - Public Properties
 
@@ -53,8 +54,11 @@ final class SongPlayerViewController: UIViewController {
             } catch {}
         }
 
-        player?.play()
-        setTimer()
+        if let player {
+            volumeSlider.setValue(player.volume, animated: false)
+            player.play()
+            setTimer()
+        }
     }
 
     private func setTimer() {
@@ -108,7 +112,6 @@ final class SongPlayerViewController: UIViewController {
     }
 
     @IBAction func playNext(_ sender: UIButton) {
-        print(track?.name ?? "", track?.nextTrack?.name ?? "")
         if let nextTrack = track?.nextTrack {
             timer?.invalidate()
             track = nextTrack
@@ -122,6 +125,10 @@ final class SongPlayerViewController: UIViewController {
             track = prevTrack
             setupPlayer()
         }
+    }
+
+    @IBAction func changeVolume(_ sender: UISlider) {
+        player?.setVolume(sender.value, fadeDuration: 0.1)
     }
 
     @IBAction private func closePlayer(_ sender: UIButton) {

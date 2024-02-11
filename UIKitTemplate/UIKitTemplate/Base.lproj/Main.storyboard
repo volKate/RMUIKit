@@ -333,6 +333,9 @@
                                         <real key="value" value="-90"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeVolume:" destination="pgW-1X-WAf" eventType="valueChanged" id="0aA-te-uFc"/>
+                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0L-8s-r82" userLabel="closeButton">
                                 <rect key="frame" x="22" y="24" width="14" height="14"/>
@@ -362,6 +365,7 @@
                         <outlet property="trackArtistLabel" destination="42f-zc-m5f" id="FlR-MA-uNA"/>
                         <outlet property="trackNameLabel" destination="fWi-lj-J0a" id="nHZ-Hu-aUI"/>
                         <outlet property="trackProgressSlider" destination="3V2-BB-t4e" id="aKV-jF-bhb"/>
+                        <outlet property="volumeSlider" destination="d2E-ey-93Z" id="xX7-gd-uPL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aak-MB-8gZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
