@@ -11,6 +11,7 @@
 		DA4BF5402B7931E500298F6C /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF53F2B7931E500298F6C /* UnderlinedTextField.swift */; };
 		DA4BF5422B7943DC00298F6C /* RemindersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF5412B7943DB00298F6C /* RemindersListViewController.swift */; };
 		DA4BF5442B7946FB00298F6C /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF5432B7946FB00298F6C /* AddReminderViewController.swift */; };
+		DA4BF5662B798A0800298F6C /* ReminderFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF5652B798A0800298F6C /* ReminderFormData.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* AuthViewController.swift */; };
@@ -25,6 +26,7 @@
 		DA4BF53F2B7931E500298F6C /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		DA4BF5412B7943DB00298F6C /* RemindersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersListViewController.swift; sourceTree = "<group>"; };
 		DA4BF5432B7946FB00298F6C /* AddReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		DA4BF5652B798A0800298F6C /* ReminderFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderFormData.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				DA4BF53F2B7931E500298F6C /* UnderlinedTextField.swift */,
 				DA4BF5412B7943DB00298F6C /* RemindersListViewController.swift */,
 				DA4BF5432B7946FB00298F6C /* AddReminderViewController.swift */,
+				DA4BF5652B798A0800298F6C /* ReminderFormData.swift */,
 			);
 			path = UIKitTemplate;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				DA4BF5402B7931E500298F6C /* UnderlinedTextField.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
+				DA4BF5662B798A0800298F6C /* ReminderFormData.swift in Sources */,
 				DA4BF5442B7946FB00298F6C /* AddReminderViewController.swift in Sources */,
 				DA4BF5422B7943DC00298F6C /* RemindersListViewController.swift in Sources */,
 			);

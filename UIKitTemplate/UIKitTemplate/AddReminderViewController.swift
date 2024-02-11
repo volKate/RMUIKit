@@ -123,6 +123,10 @@ class AddReminderViewController: UIViewController {
         return field
     }()
 
+    // MARK: - Public Properties
+
+    var handleAdd: ((ReminderFormData) -> ())?
+
     // MARK: - Private Properties
 
     private var fullName: String = ""
@@ -180,7 +184,7 @@ class AddReminderViewController: UIViewController {
     }
 
     private func setupNav() {
-        let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
+        let addButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(submitForm))
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissForm))
         navigationItem.setRightBarButton(addButton, animated: false)
         navigationItem.setLeftBarButton(cancelButton, animated: false)
@@ -205,6 +209,11 @@ class AddReminderViewController: UIViewController {
 
     @objc private func editTelegram() {
         present(telegramAlert, animated: true)
+    }
+
+    @objc private func submitForm() {
+        handleAdd?(ReminderFormData(fullName: fullName, birthday: birthDate, age: age))
+        dismissForm()
     }
 
     // factories

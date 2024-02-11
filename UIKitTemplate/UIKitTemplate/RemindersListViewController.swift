@@ -60,8 +60,26 @@ final class RemindersListViewController: UIViewController {
 
     @objc private func addReminder() {
         let addReminderVC = AddReminderViewController()
+        addReminderVC.handleAdd = { [weak self] data in
+            self?.addReminderView(data)
+        }
         addReminderVC.modalPresentationStyle = .pageSheet
         present(UINavigationController(rootViewController: addReminderVC), animated: true)
+    }
+
+    private func addReminderView(_ data: ReminderFormData) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let birthdayString = formatter.string(from: data.birthday)
+        let reminder = makeReminder(
+            avatar: .avatarPlaceholder,
+            name: data.fullName,
+            date: "\(birthdayString) - turns \(data.age + 1)",
+            countDown: "20\ndays"
+        )
+        reminder.frame = CGRect(origin: CGPoint(x: 20, y: 500), size: reminder.frame.size)
+        view.addSubview(reminder)
     }
 
     // factories
