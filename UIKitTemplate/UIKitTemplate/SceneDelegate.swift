@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.backgroundColor = .white
         window?.windowScene = windowScene
-        window?.rootViewController = AuthViewController()
+        let navController = UINavigationController(rootViewController: AuthViewController())
+        window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }
 }

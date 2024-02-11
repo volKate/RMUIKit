@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA4BF53E2B79298F00298F6C /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF53D2B79298F00298F6C /* BaseLabel.swift */; };
 		DA4BF5402B7931E500298F6C /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF53F2B7931E500298F6C /* UnderlinedTextField.swift */; };
+		DA4BF5422B7943DC00298F6C /* BirthdaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF5412B7943DB00298F6C /* BirthdaysViewController.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* AuthViewController.swift */; };
@@ -21,6 +22,7 @@
 		DA4BF53C2B7927F400298F6C /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
 		DA4BF53D2B79298F00298F6C /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
 		DA4BF53F2B7931E500298F6C /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		DA4BF5412B7943DB00298F6C /* BirthdaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdaysViewController.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				DAFE7CFD2B71802C00F71686 /* Info.plist */,
 				DA4BF53D2B79298F00298F6C /* BaseLabel.swift */,
 				DA4BF53F2B7931E500298F6C /* UnderlinedTextField.swift */,
+				DA4BF5412B7943DB00298F6C /* BirthdaysViewController.swift */,
 			);
 			path = UIKitTemplate;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				DA4BF5402B7931E500298F6C /* UnderlinedTextField.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
+				DA4BF5422B7943DC00298F6C /* BirthdaysViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

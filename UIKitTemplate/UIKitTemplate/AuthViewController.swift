@@ -46,6 +46,8 @@ final class AuthViewController: UIViewController {
         field.placeholder = "Typing email"
         field.frame = CGRect(x: 20, y: 347, width: 335, height: 17)
         field.textContentType = .emailAddress
+        field.keyboardType = .emailAddress
+        field.autocapitalizationType = .none
         return field
     }()
 
@@ -54,6 +56,7 @@ final class AuthViewController: UIViewController {
         field.placeholder = "Typing password"
         field.frame = CGRect(x: 20, y: 422, width: 335, height: 17)
         field.isSecureTextEntry = true
+        field.textContentType = .password
         return field
     }()
 
@@ -100,6 +103,24 @@ final class AuthViewController: UIViewController {
         return faceIdSwitch
     }()
 
+    // MARK: - Private Properties
+
+    private var email: String = "" {
+        didSet {
+            updateUI()
+        }
+    }
+
+    private var password: String = "" {
+        didSet {
+            updateUI()
+        }
+    }
+
+    private var isValidCredentials: Bool {
+        email == "example@mail.ru" && password == "Qwerty1234"
+    }
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -120,12 +141,50 @@ final class AuthViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(useFaceIdLabel)
         view.addSubview(useFaceIdSwitch)
+
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        emailTextField.addTarget(self, action: #selector(updateCredentials(_:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(updateCredentials(_:)), for: .editingChanged)
+
+        loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
     }
 
+    private func updateUI() {
+        loginButton.isEnabled = isValidCredentials
+        useFaceIdLabel.isHidden = !isValidCredentials
+        useFaceIdSwitch.isHidden = !isValidCredentials
+    }
+
+    @objc private func updateCredentials(_ textField: UITextField) {
+        switch textField {
+        case emailTextField:
+            email = emailTextField.text ?? ""
+        case passwordTextField:
+            password = passwordTextField.text ?? ""
+        default:
+            break
+        }
+    }
+
+    @objc private func login() {
+        let birthdaysVC = BirthdaysViewController()
+        navigationController?.pushViewController(birthdaysVC, animated: true)
+    }
+
+    // factories
     private func makeTextFieldLabel(text: String) -> UILabel {
         let label = BaseLabel(size: 16, bold: true)
         label.text = text
         label.textColor = .redMain
         return label
+    }
+}
+
+extension AuthViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        return true
     }
 }
