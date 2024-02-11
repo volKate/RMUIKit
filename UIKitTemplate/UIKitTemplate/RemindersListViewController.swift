@@ -5,35 +5,34 @@ import UIKit
 
 /// VC with the list of birthday reminders ordered by most close ones first
 final class RemindersListViewController: UIViewController {
+    // MARK: - Private Properties
 
-        // MARK: - Private Properties
-
-        private lazy var reminders = [
-            makeReminder(
-                avatar: .helenaAvatar,
-                name: "Helena Link",
-                date: "10.03 - turns 25!",
-                countDown: "10\ndays"
-            ),
-            makeReminder(
-                avatar: .veronaAvatar,
-                name: "Verona Tusk",
-                date: "20.03 - turns 39",
-                countDown: "10\ndays"
-            ),
-            makeReminder(
-                avatar: .alexAvatar,
-                name: "Alex Smith",
-                date: "21.04 - turns 51",
-                countDown: "42\ndays"
-            ),
-            makeReminder(
-                avatar: .tomAvatar,
-                name: "Tom Johnson",
-                date: "05.06 - turns 18",
-                countDown: "87\ndays"
-            )
-        ]
+    private lazy var reminders = [
+        makeReminder(
+            avatar: .helenaAvatar,
+            name: "Helena Link",
+            date: "10.03 - turns 25!",
+            countDown: "10\ndays"
+        ),
+        makeReminder(
+            avatar: .veronaAvatar,
+            name: "Verona Tusk",
+            date: "20.03 - turns 39",
+            countDown: "10\ndays"
+        ),
+        makeReminder(
+            avatar: .alexAvatar,
+            name: "Alex Smith",
+            date: "21.04 - turns 51",
+            countDown: "42\ndays"
+        ),
+        makeReminder(
+            avatar: .tomAvatar,
+            name: "Tom Johnson",
+            date: "05.06 - turns 18",
+            countDown: "87\ndays"
+        )
+    ]
 
     // MARK: - Life Cycle
 
