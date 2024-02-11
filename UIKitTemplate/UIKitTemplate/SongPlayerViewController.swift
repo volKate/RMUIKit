@@ -8,6 +8,7 @@ final class SongPlayerViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet var trackNameLabel: UILabel!
+    @IBOutlet var trackProgressSlider: UISlider!
 
     // MARK: - Public Properties
 
@@ -17,6 +18,16 @@ final class SongPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupPlayer()
+    }
+
+    // MARK: - Private Methods/IBAction
+
+    private func setupPlayer() {
         trackNameLabel.text = trackName
+    }
+
+    @IBAction private func closePlayer(_ sender: UIButton) {
+        dismiss(animated: true)
     }
 }

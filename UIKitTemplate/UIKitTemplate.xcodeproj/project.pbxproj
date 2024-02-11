@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA4BF5232B78B6D800298F6C /* PlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BF5222B78B6D800298F6C /* PlayerSlider.swift */; };
 		DAA4657A2B781B8C006064C5 /* UIView+InspectableBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA465792B781B8C006064C5 /* UIView+InspectableBorder.swift */; };
 		DAA4657E2B7831EB006064C5 /* SongPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4657D2B7831EB006064C5 /* SongPlayerViewController.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA4BF5222B78B6D800298F6C /* PlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSlider.swift; sourceTree = "<group>"; };
 		DAA465792B781B8C006064C5 /* UIView+InspectableBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+InspectableBorder.swift"; sourceTree = "<group>"; };
 		DAA4657D2B7831EB006064C5 /* SongPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayerViewController.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,7 @@
 				DAFE7CFD2B71802C00F71686 /* Info.plist */,
 				DAA465792B781B8C006064C5 /* UIView+InspectableBorder.swift */,
 				DAA4657D2B7831EB006064C5 /* SongPlayerViewController.swift */,
+				DA4BF5222B78B6D800298F6C /* PlayerSlider.swift */,
 			);
 			path = UIKitTemplate;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DAA4657E2B7831EB006064C5 /* SongPlayerViewController.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
+				DA4BF5232B78B6D800298F6C /* PlayerSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
