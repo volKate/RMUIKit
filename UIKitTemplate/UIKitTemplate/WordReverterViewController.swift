@@ -1,15 +1,15 @@
-// MathAppViewController.swift
+// WordReverterViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// MathApp main screen
+/// Страница запрашивающая слово через алерт и выводящая на экран оригинальное слово и перевернутое
 final class WordReverterViewController: UIViewController {
-    private var converter: WordConverter?
+    // MARK: - Visual Components
 
-    lazy var startButton: UIButton = {
+    private lazy var startButton: UIButton = {
         var config = UIButton.Configuration.filled()
-        config.baseBackgroundColor = UIColor(named: "greenNeon")
+        config.baseBackgroundColor = .greenNeon
         config.baseForegroundColor = .white
         config.cornerStyle = .medium
         var attributedTitle = AttributedString("Начать")
@@ -27,27 +27,34 @@ final class WordReverterViewController: UIViewController {
         return button
     }()
 
-    lazy var enterWordAlert: UIAlertController = {
+    private lazy var enterWordAlert: UIAlertController = {
         var alert = UIAlertController(title: "Введите ваше слово", message: nil, preferredStyle: .alert)
         alert.addTextField { $0.placeholder = "Введите слово" }
         return alert
     }()
 
-    lazy var originalWordLabel: UILabel = makeDescriptionLabel("Вы ввели слово")
-    lazy var convertedWordLabel: UILabel = makeDescriptionLabel("А вот что получится, если читать справо налево")
-    lazy var originalWordValue: UILabel = makeValueLabel()
-    lazy var convertedWordValue: UILabel = makeValueLabel()
+    private lazy var originalWordLabel: UILabel = makeDescriptionLabel("Вы ввели слово")
+    private lazy var convertedWordLabel: UILabel =
+        makeDescriptionLabel("А вот что получится, если читать справо налево")
+    private lazy var originalWordValue: UILabel = makeValueLabel()
+    private lazy var convertedWordValue: UILabel = makeValueLabel()
+
+    // MARK: - Private Properties
+
+    private var converter: WordConverter?
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(startButton)
-
-        startButton.addTarget(self, action: #selector(touchStartButton), for: .touchUpInside)
+        setupView()
     }
 
-    @objc private func touchStartButton() {
-        resetToStart()
-        showEnterWordAlert()
+    // MARK: - Private Methods
+
+    private func setupView() {
+        view.addSubview(startButton)
+        startButton.addTarget(self, action: #selector(touchStartButton), for: .touchUpInside)
     }
 
     private func showEnterWordAlert() {
@@ -126,6 +133,12 @@ final class WordReverterViewController: UIViewController {
         enterWordAlert.textFields?.forEach { $0.text = "" }
     }
 
+    @objc private func touchStartButton() {
+        resetToStart()
+        showEnterWordAlert()
+    }
+
+    // Factories
     private func makeDescriptionLabel(_ title: String) -> UILabel {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)

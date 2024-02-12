@@ -10,7 +10,7 @@
 		DAB5B2652B75B1E100C0E656 /* WordConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB5B2642B75B1E100C0E656 /* WordConverter.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
-		DAFE7CF42B71802900F71686 /* MathAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* MathAppViewController.swift */; };
+		DAFE7CF42B71802900F71686 /* WordReverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* WordReverterViewController.swift */; };
 		DAFE7CF92B71802C00F71686 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAFE7CF82B71802C00F71686 /* Assets.xcassets */; };
 		DAFE7CFC2B71802C00F71686 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFE7CFA2B71802C00F71686 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +20,7 @@
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DAFE7CF32B71802900F71686 /* MathAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathAppViewController.swift; sourceTree = "<group>"; };
+		DAFE7CF32B71802900F71686 /* WordReverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordReverterViewController.swift; sourceTree = "<group>"; };
 		DAFE7CF82B71802C00F71686 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAFE7CFB2B71802C00F71686 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAFE7CFD2B71802C00F71686 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				DAFE7CEF2B71802900F71686 /* AppDelegate.swift */,
 				DAFE7CF12B71802900F71686 /* SceneDelegate.swift */,
-				DAFE7CF32B71802900F71686 /* MathAppViewController.swift */,
+				DAFE7CF32B71802900F71686 /* WordReverterViewController.swift */,
 				DAFE7CF82B71802C00F71686 /* Assets.xcassets */,
 				DAFE7CFA2B71802C00F71686 /* LaunchScreen.storyboard */,
 				DAFE7CFD2B71802C00F71686 /* Info.plist */,
@@ -182,7 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAFE7CF42B71802900F71686 /* MathAppViewController.swift in Sources */,
+				DAFE7CF42B71802900F71686 /* WordReverterViewController.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DAB5B2652B75B1E100C0E656 /* WordConverter.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
