@@ -3,11 +3,9 @@
 
 import UIKit
 
-/// MathApp main screen
+/// Класс в котором рассчитываются математические операции
 final class MathAppViewController: UIViewController {
-    private let calculator = Calculator()
-    private var operands = (first: 0, second: 0)
-    private var guessNum = 0
+    // MARK: - Visual Components
 
     // SafeArea
     private var safeAreaInsents: UIEdgeInsets {
@@ -20,8 +18,8 @@ final class MathAppViewController: UIViewController {
         return .zero
     }
 
-    private lazy var bg: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "bg"))
+    private lazy var bgImage: UIImageView = {
+        let image = UIImageView(image: .background)
         image.frame = view.bounds
         return image
     }()
@@ -63,7 +61,7 @@ final class MathAppViewController: UIViewController {
         ) { [unowned self] _ in
             greetingLabel.text = "Приветствую, \(alert.textFields?.first?.text ?? "User")!"
             view.addSubview(greetingLabel)
-            bg.frame = CGRect(
+            bgImage.frame = CGRect(
                 x: 0,
                 y: greetingLabel.frame.minY,
                 width: view.bounds.width,
@@ -93,6 +91,7 @@ final class MathAppViewController: UIViewController {
             resetOperands()
             runCalculator()
         }
+
         let cancelAction = makeCancelAction { [unowned self] _ in resetOperands() }
         alert.addAction(chooseOprationAction)
         alert.addAction(cancelAction)
@@ -162,11 +161,17 @@ final class MathAppViewController: UIViewController {
         return alert
     }()
 
+    // MARK: - Private Properties
+
+    private let calculator = Calculator()
+    private var operands = (first: 0, second: 0)
+    private var guessNum = 0
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.addSubview(bg)
-        prepareButtons()
+        setupViews()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -174,7 +179,10 @@ final class MathAppViewController: UIViewController {
         present(greetingAlert, animated: true)
     }
 
-    private func prepareButtons() {
+    // MARK: - Private Methods
+
+    private func setupViews() {
+        view.addSubview(bgImage)
         view.addSubview(guessNumButton)
         view.addSubview(calcButton)
 
@@ -191,16 +199,6 @@ final class MathAppViewController: UIViewController {
 
         calcButton.addTarget(self, action: #selector(runCalculator), for: .touchUpInside)
         guessNumButton.addTarget(self, action: #selector(runGuessGame), for: .touchUpInside)
-    }
-
-    @objc private func runCalculator() {
-        present(calcInputAlert, animated: true)
-    }
-
-    @objc private func runGuessGame() {
-        resetGuessInput()
-        guessNum = Int.random(in: 1 ... 10)
-        present(guessInputAlert, animated: true)
     }
 
     private func checkGuessNum(_ num: Int) {
@@ -222,6 +220,16 @@ final class MathAppViewController: UIViewController {
 
     private func resetGuessInput() {
         guessInputAlert.textFields?.forEach { $0.text = "" }
+    }
+
+    @objc private func runCalculator() {
+        present(calcInputAlert, animated: true)
+    }
+
+    @objc private func runGuessGame() {
+        resetGuessInput()
+        guessNum = Int.random(in: 1 ... 10)
+        present(guessInputAlert, animated: true)
     }
 
     // Factories
