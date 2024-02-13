@@ -133,7 +133,6 @@ final class RemindersListViewController: UIViewController {
         avatar.layer.borderWidth = 1
         avatar.layer.borderColor = UIColor.gray.cgColor
         avatar.frame = CGRect(origin: .zero, size: CGSize(width: 75, height: 75))
-
         return avatar
     }
 }

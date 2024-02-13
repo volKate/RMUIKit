@@ -156,6 +156,14 @@ final class AuthViewController: UIViewController {
         useFaceIdSwitch.isHidden = !isValidCredentials
     }
 
+    // factories
+    private func makeTextFieldLabel(text: String) -> UILabel {
+        let label = BaseLabel(size: 16, bold: true)
+        label.text = text
+        label.textColor = .redMain
+        return label
+    }
+
     @objc private func updateCredentials(_ textField: UITextField) {
         switch textField {
         case emailTextField:
@@ -170,14 +178,6 @@ final class AuthViewController: UIViewController {
     @objc private func login() {
         let birthdaysVC = RemindersListViewController()
         navigationController?.pushViewController(birthdaysVC, animated: true)
-    }
-
-    // factories
-    private func makeTextFieldLabel(text: String) -> UILabel {
-        let label = BaseLabel(size: 16, bold: true)
-        label.text = text
-        label.textColor = .redMain
-        return label
     }
 }
 

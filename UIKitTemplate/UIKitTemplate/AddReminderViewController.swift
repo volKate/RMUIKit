@@ -4,7 +4,7 @@
 import UIKit
 
 /// VC with the new reminder creation form
-class AddReminderViewController: UIViewController {
+final class AddReminderViewController: UIViewController {
     // MARK: - Visual Components
 
     private lazy var avatarPickerView: UIImageView = {
@@ -105,7 +105,6 @@ class AddReminderViewController: UIViewController {
         field.placeholder = "Typing Date of Birth"
         field.frame = CGRect(x: 20, y: 566, width: 335, height: 19)
         field.addTarget(self, action: #selector(editTelegram), for: .editingDidBegin)
-
         return field
     }()
 
@@ -169,18 +168,17 @@ class AddReminderViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = .white
-        view.addSubview(avatarPickerView)
-        view.addSubview(choosePhotoButton)
-        view.addSubview(nameTextFieldLabel)
-        view.addSubview(birthdayTextFieldLabel)
-        view.addSubview(ageTextFieldLabel)
-        view.addSubview(genderTextFieldLabel)
-        view.addSubview(telegramTextFieldLabel)
-        view.addSubview(agePickerTextField)
-        view.addSubview(nameTextField)
-        view.addSubview(genderPickerTextField)
-        view.addSubview(birthdayPickerTextField)
-        view.addSubview(telegramPickerTextField)
+        [
+            avatarPickerView,
+            choosePhotoButton,
+            nameTextFieldLabel,
+            birthdayTextFieldLabel,
+            ageTextFieldLabel,
+            genderTextFieldLabel,
+            telegramTextFieldLabel,
+            agePickerTextField,
+            nameTextField, genderPickerTextField, birthdayPickerTextField, telegramPickerTextField
+        ].forEach { view.addSubview($0) }
     }
 
     private func setupNav() {
@@ -188,6 +186,29 @@ class AddReminderViewController: UIViewController {
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissForm))
         navigationItem.setRightBarButton(addButton, animated: false)
         navigationItem.setLeftBarButton(cancelButton, animated: false)
+    }
+
+    // factories
+    private func makeTextFieldLabel(text: String) -> UILabel {
+        let label = BaseLabel(size: 16, bold: true)
+        label.text = text
+        return label
+    }
+
+    private func makePickerTextField(placeholder: String, picker: UIPickerView) -> UITextField {
+        let field = UnderlinedTextField()
+        field.placeholder = placeholder
+        picker.delegate = self
+        picker.dataSource = self
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.sizeToFit()
+        let okButton = UIBarButtonItem(title: "Ok", style: .plain, target: self, action: #selector(finishPicking))
+        toolbar.setItems([okButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        field.inputView = picker
+        field.inputAccessoryView = toolbar
+        return field
     }
 
     @objc private func dismissForm() {
@@ -214,29 +235,6 @@ class AddReminderViewController: UIViewController {
     @objc private func submitForm() {
         handleAdd?(ReminderFormData(fullName: fullName, birthday: birthDate, age: age))
         dismissForm()
-    }
-
-    // factories
-    private func makeTextFieldLabel(text: String) -> UILabel {
-        let label = BaseLabel(size: 16, bold: true)
-        label.text = text
-        return label
-    }
-
-    private func makePickerTextField(placeholder: String, picker: UIPickerView) -> UITextField {
-        let field = UnderlinedTextField()
-        field.placeholder = placeholder
-        picker.delegate = self
-        picker.dataSource = self
-        let toolbar = UIToolbar()
-        toolbar.barStyle = .default
-        toolbar.sizeToFit()
-        let okButton = UIBarButtonItem(title: "Ok", style: .plain, target: self, action: #selector(finishPicking))
-        toolbar.setItems([okButton], animated: false)
-        toolbar.isUserInteractionEnabled = true
-        field.inputView = picker
-        field.inputAccessoryView = toolbar
-        return field
     }
 }
 
