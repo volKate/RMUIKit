@@ -111,7 +111,7 @@ final class SongPlayerViewController: UIViewController {
         }
     }
 
-    @IBAction func playNext(_ sender: UIButton) {
+    @IBAction private func playNext(_ sender: UIButton) {
         if let nextTrack = track?.nextTrack {
             timer?.invalidate()
             track = nextTrack
@@ -119,7 +119,7 @@ final class SongPlayerViewController: UIViewController {
         }
     }
 
-    @IBAction func playPrev(_ sender: UIButton) {
+    @IBAction private func playPrev(_ sender: UIButton) {
         if let prevTrack = track?.prevTrack {
             timer?.invalidate()
             track = prevTrack
@@ -127,7 +127,7 @@ final class SongPlayerViewController: UIViewController {
         }
     }
 
-    @IBAction func changeVolume(_ sender: UISlider) {
+    @IBAction private func changeVolume(_ sender: UISlider) {
         player?.setVolume(sender.value, fadeDuration: 0.1)
     }
 
