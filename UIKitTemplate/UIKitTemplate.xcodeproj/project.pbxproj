@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA5398402B83B11D00A31E90 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53983F2B83B11D00A31E90 /* AppTabBarController.swift */; };
+		DA5398432B83B1D600A31E90 /* UIFont+Verdana.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398422B83B1D600A31E90 /* UIFont+Verdana.swift */; };
+		DA5398452B83B53700A31E90 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398442B83B53700A31E90 /* NotificationsViewController.swift */; };
+		DA5398472B83B54400A31E90 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398462B83B54400A31E90 /* ProfileViewController.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* FeedViewController.swift */; };
@@ -15,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA53983F2B83B11D00A31E90 /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
+		DA5398422B83B1D600A31E90 /* UIFont+Verdana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Verdana.swift"; sourceTree = "<group>"; };
+		DA5398442B83B53700A31E90 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		DA5398462B83B54400A31E90 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,25 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		DA53983E2B83B08300A31E90 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAFE7CF32B71802900F71686 /* FeedViewController.swift */,
+				DA5398442B83B53700A31E90 /* NotificationsViewController.swift */,
+				DA5398462B83B54400A31E90 /* ProfileViewController.swift */,
+				DA53983F2B83B11D00A31E90 /* AppTabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DA5398412B83B1C300A31E90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA5398422B83B1D600A31E90 /* UIFont+Verdana.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DAFE7CE32B71802900F71686 = {
 			isa = PBXGroup;
 			children = (
@@ -72,7 +99,8 @@
 		DAFE7CEE2B71802900F71686 /* UIKitTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				DAFE7CF32B71802900F71686 /* FeedViewController.swift */,
+				DA5398412B83B1C300A31E90 /* Extensions */,
+				DA53983E2B83B08300A31E90 /* Controllers */,
 				DA53983C2B83AE8200A31E90 /* Resources */,
 				DA53983D2B83AF2B00A31E90 /* SupportingFiles */,
 				DAFE7CFD2B71802C00F71686 /* Info.plist */,
@@ -196,8 +224,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAFE7CF42B71802900F71686 /* FeedViewController.swift in Sources */,
+				DA5398402B83B11D00A31E90 /* AppTabBarController.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
+				DA5398452B83B53700A31E90 /* NotificationsViewController.swift in Sources */,
+				DA5398472B83B54400A31E90 /* ProfileViewController.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
+				DA5398432B83B1D600A31E90 /* UIFont+Verdana.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
