@@ -37,6 +37,7 @@ final class StoriesCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupCell() {
+        selectionStyle = .none
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.addSubview(contentContainerView)
         contentView.addSubview(scrollView)

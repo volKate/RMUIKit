@@ -35,6 +35,7 @@ final class PostCell: UITableViewCell {
     }
 
     func setupCell(withPost post: Post) {
+        selectionStyle = .none
         let slideViews = makeSliderImageViews(post: post)
         imageSliderView.delegate = self
 

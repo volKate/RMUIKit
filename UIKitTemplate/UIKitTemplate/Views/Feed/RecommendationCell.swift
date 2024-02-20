@@ -56,6 +56,7 @@ final class RecommendationCell: UITableViewCell {
     }
 
     func setupCell(withRecommendations recommendations: [Recommendation]) {
+        selectionStyle = .none
         backgroundColor = .blueSecondary
         contentView.addSubview(recommendationLabel)
         contentView.addSubview(allButton)

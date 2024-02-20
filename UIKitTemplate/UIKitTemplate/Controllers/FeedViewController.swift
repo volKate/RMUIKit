@@ -88,7 +88,7 @@ extension FeedViewController: UITableViewDataSource {
         case let .post(isFirst) where isFirst:
             return 1
         case .post:
-            return AppDataProvider.shared.postsCount - 1
+            return AppDataProvider.shared.posts.count - 1
         }
     }
 

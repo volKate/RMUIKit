@@ -14,6 +14,11 @@
 		DA5398492B83E7BC00A31E90 /* Array+ActivateContraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398482B83E7BC00A31E90 /* Array+ActivateContraints.swift */; };
 		DA53984D2B83EE4500A31E90 /* StoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53984C2B83EE4500A31E90 /* StoriesCell.swift */; };
 		DA53984F2B840E8A00A31E90 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53984E2B840E8A00A31E90 /* StoryView.swift */; };
+		DA5409F12B853BDB00C350E2 /* LinkNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F02B853BDB00C350E2 /* LinkNotification.swift */; };
+		DA5409F42B85420200C350E2 /* ThumbnailNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F32B85420200C350E2 /* ThumbnailNotificationCell.swift */; };
+		DA5409F62B85420F00C350E2 /* SubscribeNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F52B85420F00C350E2 /* SubscribeNotificationCell.swift */; };
+		DA5409F82B854F9A00C350E2 /* NotificationBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */; };
+		DA5409FB2B85584E00C350E2 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */; };
 		DA6B827D2B84BEF20045044C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827C2B84BEF20045044C /* Story.swift */; };
 		DA6B827F2B84BF4B0045044C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827E2B84BF4B0045044C /* Post.swift */; };
 		DA6B82812B84BF690045044C /* AppDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B82802B84BF690045044C /* AppDataProvider.swift */; };
@@ -39,6 +44,11 @@
 		DA5398482B83E7BC00A31E90 /* Array+ActivateContraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ActivateContraints.swift"; sourceTree = "<group>"; };
 		DA53984C2B83EE4500A31E90 /* StoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCell.swift; sourceTree = "<group>"; };
 		DA53984E2B840E8A00A31E90 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		DA5409F02B853BDB00C350E2 /* LinkNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkNotification.swift; sourceTree = "<group>"; };
+		DA5409F32B85420200C350E2 /* ThumbnailNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailNotificationCell.swift; sourceTree = "<group>"; };
+		DA5409F52B85420F00C350E2 /* SubscribeNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeNotificationCell.swift; sourceTree = "<group>"; };
+		DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBaseView.swift; sourceTree = "<group>"; };
+		DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
 		DA6B827C2B84BEF20045044C /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		DA6B827E2B84BF4B0045044C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DA6B82802B84BF690045044C /* AppDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataProvider.swift; sourceTree = "<group>"; };
@@ -110,6 +120,8 @@
 		DA53984A2B83EE1000A31E90 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DA5409F92B85583B00C350E2 /* Shared */,
+				DA5409F22B8541E100C350E2 /* Notifications */,
 				DA53984B2B83EE1C00A31E90 /* Feed */,
 			);
 			path = Views;
@@ -129,6 +141,24 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		DA5409F22B8541E100C350E2 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				DA5409F32B85420200C350E2 /* ThumbnailNotificationCell.swift */,
+				DA5409F52B85420F00C350E2 /* SubscribeNotificationCell.swift */,
+				DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		DA5409F92B85583B00C350E2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		DA6B827B2B84BED10045044C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +167,7 @@
 				DA6B82802B84BF690045044C /* AppDataProvider.swift */,
 				DA6B828A2B8509700045044C /* Recommendation.swift */,
 				DA6B828C2B8509AA0045044C /* Account.swift */,
+				DA5409F02B853BDB00C350E2 /* LinkNotification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,7 +322,9 @@
 				DA53984D2B83EE4500A31E90 /* StoriesCell.swift in Sources */,
 				DAFE7CF42B71802900F71686 /* FeedViewController.swift in Sources */,
 				DA6B827F2B84BF4B0045044C /* Post.swift in Sources */,
+				DA5409F42B85420200C350E2 /* ThumbnailNotificationCell.swift in Sources */,
 				DA5398492B83E7BC00A31E90 /* Array+ActivateContraints.swift in Sources */,
+				DA5409F62B85420F00C350E2 /* SubscribeNotificationCell.swift in Sources */,
 				DA5398402B83B11D00A31E90 /* AppTabBarController.swift in Sources */,
 				DA6B828F2B8512A60045044C /* RecommendationView.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
@@ -301,8 +334,11 @@
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
 				DA6B82852B84F40C0045044C /* PostHeaderView.swift in Sources */,
 				DA5398432B83B1D600A31E90 /* UIFont+Verdana.swift in Sources */,
+				DA5409FB2B85584E00C350E2 /* SubscribeButton.swift in Sources */,
 				DA6B82892B8508280045044C /* RecommendationCell.swift in Sources */,
+				DA5409F82B854F9A00C350E2 /* NotificationBaseView.swift in Sources */,
 				DA6B82812B84BF690045044C /* AppDataProvider.swift in Sources */,
+				DA5409F12B853BDB00C350E2 /* LinkNotification.swift in Sources */,
 				DA6B827D2B84BEF20045044C /* Story.swift in Sources */,
 				DA6B828D2B8509AA0045044C /* Account.swift in Sources */,
 				DA6B82872B84F6B20045044C /* PostFooterView.swift in Sources */,
