@@ -9,18 +9,7 @@ final class RecommendationView: UIView {
         static let subscribeButtonText = "Подписаться"
     }
 
-    private let accountImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 55
-        view.translatesAutoresizingMaskIntoConstraints = false
-        [
-            view.heightAnchor.constraint(equalToConstant: 115),
-            view.widthAnchor.constraint(equalTo: view.heightAnchor)
-        ].activate()
-        return view
-    }()
+    private let accountImageView = AvatarImageView()
 
     private lazy var accountNameLabel: UILabel = {
         let label = UILabel()
@@ -30,19 +19,7 @@ final class RecommendationView: UIView {
         return label
     }()
 
-    private lazy var subscribeButton: UIButton = {
-        let button = UIButton(configuration: UIButton.Configuration.filled())
-        button.configuration?.attributedTitle = AttributedString(
-            Constants.subscribeButtonText,
-            attributes: AttributeContainer([
-                .font: UIFont.verdanaBold(ofSize: 10) ?? UIFont.boldSystemFont(ofSize: 10),
-                .foregroundColor: UIColor.whiteMain.cgColor
-            ])
-        )
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        return button
-    }()
+    private let subscribeButton = SubscribeButton()
 
     var account: Account? {
         didSet {
@@ -64,6 +41,7 @@ final class RecommendationView: UIView {
     }
 
     private func setupView() {
+        accountImageView.size = 115.0
         backgroundColor = .whiteMain
         addSubview(accountImageView)
         addSubview(accountNameLabel)

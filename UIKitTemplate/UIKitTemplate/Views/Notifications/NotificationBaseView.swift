@@ -7,20 +7,7 @@ import UIKit
 final class NotificationBaseView: UIView {
     enum Constants {}
 
-    private let avatarImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 20
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.whiteMain.cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        [
-            view.heightAnchor.constraint(equalToConstant: 40),
-            view.widthAnchor.constraint(equalTo: view.heightAnchor)
-        ].activate()
-        return view
-    }()
+    private let avatarImageView = AvatarImageView()
 
     private let commentLabel: UILabel = {
         let label = UILabel()
@@ -53,6 +40,7 @@ final class NotificationBaseView: UIView {
     }
 
     private func setupView() {
+        avatarImageView.size = 40.0
         addSubview(avatarImageView)
         addSubview(commentLabel)
 

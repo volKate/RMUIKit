@@ -19,6 +19,7 @@
 		DA5409F62B85420F00C350E2 /* SubscribeNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F52B85420F00C350E2 /* SubscribeNotificationCell.swift */; };
 		DA5409F82B854F9A00C350E2 /* NotificationBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */; };
 		DA5409FB2B85584E00C350E2 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */; };
+		DA5409FD2B8564C500C350E2 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409FC2B8564C500C350E2 /* AvatarImageView.swift */; };
 		DA6B827D2B84BEF20045044C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827C2B84BEF20045044C /* Story.swift */; };
 		DA6B827F2B84BF4B0045044C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827E2B84BF4B0045044C /* Post.swift */; };
 		DA6B82812B84BF690045044C /* AppDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B82802B84BF690045044C /* AppDataProvider.swift */; };
@@ -49,6 +50,7 @@
 		DA5409F52B85420F00C350E2 /* SubscribeNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeNotificationCell.swift; sourceTree = "<group>"; };
 		DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBaseView.swift; sourceTree = "<group>"; };
 		DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
+		DA5409FC2B8564C500C350E2 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		DA6B827C2B84BEF20045044C /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		DA6B827E2B84BF4B0045044C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DA6B82802B84BF690045044C /* AppDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataProvider.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */,
+				DA5409FC2B8564C500C350E2 /* AvatarImageView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				DA6B827D2B84BEF20045044C /* Story.swift in Sources */,
 				DA6B828D2B8509AA0045044C /* Account.swift in Sources */,
 				DA6B82872B84F6B20045044C /* PostFooterView.swift in Sources */,
+				DA5409FD2B8564C500C350E2 /* AvatarImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

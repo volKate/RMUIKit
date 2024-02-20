@@ -11,18 +11,7 @@ final class PostHeaderView: UIView {
         static let menuButtonImage = "ellipsis"
     }
 
-    private let avatarImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 15
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        [
-            imageView.heightAnchor.constraint(equalToConstant: 30),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
-        ].activate()
-        return imageView
-    }()
+    private let avatarImageView = AvatarImageView()
 
     private let accountNameLabel: UILabel = {
         let label = UILabel()
@@ -45,8 +34,8 @@ final class PostHeaderView: UIView {
     var post: Post? {
         didSet {
             if let post {
-                avatarImageView.image = UIImage(named: post.avatar)
-                accountNameLabel.text = post.accountName
+                avatarImageView.image = UIImage(named: post.account.avatar)
+                accountNameLabel.text = post.account.name
             }
         }
     }
@@ -62,6 +51,7 @@ final class PostHeaderView: UIView {
     }
 
     private func setupView() {
+        avatarImageView.size = 30.0
         [avatarImageView, accountNameLabel, menuButton].forEach { addSubview($0) }
 
         translatesAutoresizingMaskIntoConstraints = false

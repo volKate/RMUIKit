@@ -5,8 +5,7 @@ import Foundation
 
 /// Модель поста в ленте
 struct Post {
-    let avatar: String
-    let accountName: String
+    let account: Account
     let postImages: [String]
     let likesCount: Int
     let postDescription: String

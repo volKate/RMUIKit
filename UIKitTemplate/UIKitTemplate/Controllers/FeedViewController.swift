@@ -97,7 +97,7 @@ extension FeedViewController: UITableViewDataSource {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
             else { return UITableViewCell() }
-            cell.stories = AppDataProvider.shared.getStories()
+            cell.stories = AppDataProvider.shared.stories
             return cell
         case let .post(isFirst):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseID) as? PostCell
@@ -111,7 +111,7 @@ extension FeedViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            cell.setupCell(withRecommendations: AppDataProvider.shared.getRecommendations())
+            cell.setupCell(withRecommendations: AppDataProvider.shared.recommendations)
             return cell
         }
     }

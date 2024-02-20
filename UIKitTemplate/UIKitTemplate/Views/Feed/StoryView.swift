@@ -18,17 +18,10 @@ final class StoryView: UIView {
     // MARK: - Visual Components
 
     private lazy var avatarImageView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: story.account.avatar))
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
-        view.layer.cornerRadius = Constants.avatarCornerRadius
+        let view = AvatarImageView(image: UIImage(named: story.account.avatar))
+        view.size = Constants.avatarSize
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.whiteMain.cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
-        [
-            view.heightAnchor.constraint(equalToConstant: Constants.avatarSize),
-            view.widthAnchor.constraint(equalTo: view.heightAnchor)
-        ].activate()
         return view
     }()
 

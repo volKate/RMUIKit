@@ -50,7 +50,7 @@ final class PostCell: UITableViewCell {
         setupConstraints(forSlideViews: slideViews)
 
         [
-            postHeaderView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            postHeaderView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             postHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postHeaderView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 

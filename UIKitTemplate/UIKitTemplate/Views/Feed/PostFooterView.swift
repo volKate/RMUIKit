@@ -44,18 +44,7 @@ final class PostFooterView: UIView {
         return label
     }()
 
-    private let userImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: AppDataProvider.shared.currentUserAvatar))
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 10
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        [
-            imageView.heightAnchor.constraint(equalToConstant: 20),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
-        ].activate()
-        return imageView
-    }()
+    private let userImageView = AvatarImageView(image: UIImage(named: AppDataProvider.shared.currentUserAvatar))
 
     private let commentPlaceholderLabel: UILabel = {
         let label = UILabel()
@@ -86,7 +75,7 @@ final class PostFooterView: UIView {
                 sliderPageControl.numberOfPages = post.postImages.count
                 likesLabel.text = "\(Constants.likesLabelText) \(post.likesCount)"
                 descriptionLabel.attributedText = makeDescriptionAtributedText(
-                    accountName: post.accountName,
+                    accountName: post.account.name,
                     description: post.postDescription
                 )
             }
@@ -110,6 +99,7 @@ final class PostFooterView: UIView {
     }
 
     private func setupView() {
+        userImageView.size = 20.0
         [
             sliderPageControl,
             likeButton,
