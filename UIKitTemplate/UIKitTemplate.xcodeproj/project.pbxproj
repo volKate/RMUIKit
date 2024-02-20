@@ -14,6 +14,9 @@
 		DA5398492B83E7BC00A31E90 /* Array+ActivateContraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398482B83E7BC00A31E90 /* Array+ActivateContraints.swift */; };
 		DA53984D2B83EE4500A31E90 /* StoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53984C2B83EE4500A31E90 /* StoriesCell.swift */; };
 		DA53984F2B840E8A00A31E90 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53984E2B840E8A00A31E90 /* StoryView.swift */; };
+		DA6B827D2B84BEF20045044C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827C2B84BEF20045044C /* Story.swift */; };
+		DA6B827F2B84BF4B0045044C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827E2B84BF4B0045044C /* Post.swift */; };
+		DA6B82812B84BF690045044C /* FeedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B82802B84BF690045044C /* FeedDataProvider.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* FeedViewController.swift */; };
@@ -29,6 +32,9 @@
 		DA5398482B83E7BC00A31E90 /* Array+ActivateContraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ActivateContraints.swift"; sourceTree = "<group>"; };
 		DA53984C2B83EE4500A31E90 /* StoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesCell.swift; sourceTree = "<group>"; };
 		DA53984E2B840E8A00A31E90 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		DA6B827C2B84BEF20045044C /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		DA6B827E2B84BF4B0045044C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		DA6B82802B84BF690045044C /* FeedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataProvider.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +110,16 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		DA6B827B2B84BED10045044C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B827C2B84BEF20045044C /* Story.swift */,
+				DA6B827E2B84BF4B0045044C /* Post.swift */,
+				DA6B82802B84BF690045044C /* FeedDataProvider.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DAFE7CE32B71802900F71686 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				DA5398412B83B1C300A31E90 /* Extensions */,
+				DA6B827B2B84BED10045044C /* Models */,
 				DA53984A2B83EE1000A31E90 /* Views */,
 				DA53983E2B83B08300A31E90 /* Controllers */,
 				DA53983C2B83AE8200A31E90 /* Resources */,
@@ -251,6 +268,7 @@
 				DA53984F2B840E8A00A31E90 /* StoryView.swift in Sources */,
 				DA53984D2B83EE4500A31E90 /* StoriesCell.swift in Sources */,
 				DAFE7CF42B71802900F71686 /* FeedViewController.swift in Sources */,
+				DA6B827F2B84BF4B0045044C /* Post.swift in Sources */,
 				DA5398492B83E7BC00A31E90 /* Array+ActivateContraints.swift in Sources */,
 				DA5398402B83B11D00A31E90 /* AppTabBarController.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
@@ -258,6 +276,8 @@
 				DA5398472B83B54400A31E90 /* ProfileViewController.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
 				DA5398432B83B1D600A31E90 /* UIFont+Verdana.swift in Sources */,
+				DA6B82812B84BF690045044C /* FeedDataProvider.swift in Sources */,
+				DA6B827D2B84BEF20045044C /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

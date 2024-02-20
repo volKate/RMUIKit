@@ -5,19 +5,22 @@ import UIKit
 
 /// Ячейка с кружочками сторис
 final class StoriesCell: UITableViewCell {
+    // MARK: - Constants
+
+    static let reuseID = "StoriesCell"
+
     // MARK: - Visual Components
+
     private let scrollView = UIScrollView()
     private let contentContainerView = UIView()
-    let stories = [
-        StoryView(avatar: .lavanda, accountName: "lavanda123", isOwn: true),
-        StoryView(avatar: .lavanda, accountName: "lavanda123"),
-        StoryView(avatar: .lavanda, accountName: "lavanda123"),
-        StoryView(avatar: .lavanda, accountName: "lavanda123"),
-        StoryView(avatar: .lavanda, accountName: "lavanda123"),
-        StoryView(avatar: .lavanda, accountName: "lavanda123"),
-        StoryView(avatar: .lavanda, accountName: "lavanda123"),
-        StoryView(avatar: .lavanda, accountName: "lavanda123")
-    ]
+
+    // MARK: - Public Properties
+
+    var stories: [Story] = [] {
+        didSet {
+            setupStories()
+        }
+    }
 
     // MARK: - Initializers
 
@@ -32,10 +35,9 @@ final class StoriesCell: UITableViewCell {
     }
 
     // MARK: - Private Methods
+
     private func setupCell() {
         scrollView.showsHorizontalScrollIndicator = false
-        stories.forEach { contentContainerView.addSubview($0) }
-
         scrollView.addSubview(contentContainerView)
         contentView.addSubview(scrollView)
         setupContraints()
@@ -55,16 +57,32 @@ final class StoriesCell: UITableViewCell {
             contentContainerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentContainerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ].activate()
+    }
+}
 
+/// Настройка историй
+extension StoriesCell {
+    private func setupStories() {
+        contentContainerView.subviews.forEach { $0.removeFromSuperview() }
+        var storiesViews: [StoryView] = []
+        for item in stories {
+            let storyView = StoryView(story: item)
+            contentContainerView.addSubview(storyView)
+            storiesViews.append(storyView)
+        }
+        setupConstraints(forStoriesViews: storiesViews)
+    }
+
+    private func setupConstraints(forStoriesViews storiesViews: [StoryView]) {
         var prevStoryView: StoryView?
-        for storyView in stories {
+        for storyView in storiesViews {
             if let prevStoryView {
                 storyView.leadingAnchor.constraint(equalTo: prevStoryView.trailingAnchor, constant: 8).isActive = true
             } else {
                 storyView.leadingAnchor.constraint(equalTo: contentContainerView.leadingAnchor, constant: 5)
                     .isActive = true
             }
-            if stories[stories.count - 1] == storyView {
+            if storiesViews[storiesViews.count - 1] == storyView {
                 contentContainerView.trailingAnchor.constraint(equalTo: storyView.trailingAnchor, constant: 5)
                     .isActive = true
             }

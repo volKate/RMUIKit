@@ -5,15 +5,20 @@ import UIKit
 
 /// Лента постов
 final class FeedViewController: UIViewController {
-    private enum FeedCellType: String {
-        case stories = "StoriesCell"
+    private enum FeedSectionType {
+        case post(Bool)
+        case stories
+        case recommendation
     }
+
+    private let sections = [FeedSectionType.stories, .post(true), .recommendation, .post(false)]
+    private let dataProvider = FeedDataProvider()
 
     private lazy var feedTableView: UITableView = {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.register(StoriesCell.self, forCellReuseIdentifier: FeedCellType.stories.rawValue)
+        table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.separatorStyle = .none
         table.rowHeight = UITableView.automaticDimension
         return table
@@ -64,16 +69,37 @@ final class FeedViewController: UIViewController {
     }
 }
 
-extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDelegate
+
+extension FeedViewController: UITableViewDelegate {}
+
+// MARK: - UITableViewDataSource
+
+extension FeedViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        switch sections[section] {
+        case .stories, .recommendation:
+            return 1
+        case let .post(isFirst) where isFirst:
+            return 1
+        case .post:
+            return dataProvider.postsCount - 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: FeedCellType.stories.rawValue,
-            for: indexPath
-        ) as? StoriesCell else { fatalError("No such cell") }
-        return cell
+        switch sections[indexPath.section] {
+        case .stories:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
+            else { return UITableViewCell() }
+            cell.stories = dataProvider.getStories()
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }

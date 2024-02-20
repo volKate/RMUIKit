@@ -3,8 +3,10 @@
 
 import UIKit
 
+/// История
 final class StoryView: UIView {
     // MARK: - Constants
+
     private enum Constants {
         static let avatarSize = 62.0
         static let avatarCornerRadius = 30.0
@@ -14,8 +16,9 @@ final class StoryView: UIView {
     }
 
     // MARK: - Visual Components
+
     private lazy var avatarImageView: UIImageView = {
-        let view = UIImageView(image: avatar)
+        let view = UIImageView(image: UIImage(named: story.avatar))
         view.layer.cornerRadius = Constants.avatarCornerRadius
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.whiteMain.cgColor
@@ -30,25 +33,21 @@ final class StoryView: UIView {
     private lazy var accountNameLabel: UILabel = {
         let label = UILabel()
         label.font = .verdana(ofSize: Constants.accountfontSize)
-        label.textColor = isOwn ? .grayMain : .blackMain
-        label.text = isOwn ? Constants.ownStoryText : accountName
+        label.textColor = story.isOwn ? .grayMain : .blackMain
+        label.text = story.isOwn ? Constants.ownStoryText : story.accountName
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     // MARK: - Public Properties
-    let avatar: UIImage
-    let accountName: String
-    var isActive = false
-    let isOwn: Bool
+
+    let story: Story
 
     // MARK: - Initializers
-    init(avatar: UIImage, accountName: String, isActive: Bool = false, isOwn: Bool = false) {
-        self.avatar = avatar
-        self.accountName = accountName
-        self.isActive = isActive
-        self.isOwn = isOwn
+
+    init(story: Story) {
+        self.story = story
         super.init(frame: .zero)
         setupView()
     }
@@ -59,6 +58,7 @@ final class StoryView: UIView {
     }
 
     // MARK: - Private Methods
+
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(avatarImageView)
