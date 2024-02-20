@@ -5,14 +5,12 @@ import Foundation
 
 /// Модель истории
 struct Story {
-    let avatar: String
-    let accountName: String
+    let account: Account
     var isActive = false
     let isOwn: Bool
 
-    init(avatar: String, accountName: String, isActive: Bool = false, isOwn: Bool = false) {
-        self.avatar = avatar
-        self.accountName = accountName
+    init(account: Account, isActive: Bool = false, isOwn: Bool = false) {
+        self.account = account
         self.isActive = isActive
         self.isOwn = isOwn
     }

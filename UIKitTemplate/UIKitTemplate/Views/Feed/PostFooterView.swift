@@ -128,6 +128,9 @@ final class PostFooterView: UIView {
 
     private func setupConstraints() {
         translatesAutoresizingMaskIntoConstraints = false
+        likesLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        timeStampLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        descriptionLabel.setContentHuggingPriority(.defaultLow - 1, for: .vertical)
         [
             likeButton.topAnchor.constraint(equalTo: topAnchor),
             likeButton.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -136,7 +139,7 @@ final class PostFooterView: UIView {
             shareButton.leadingAnchor.constraint(equalTo: messageButton.trailingAnchor, constant: 8),
             shareButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
 
-            sliderPageControl.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
+            sliderPageControl.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             sliderPageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             trailingAnchor.constraint(equalTo: bookmarkButton.trailingAnchor),
@@ -152,11 +155,11 @@ final class PostFooterView: UIView {
 
             userImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 6),
             userImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            userImageView.bottomAnchor.constraint(equalTo: commentPlaceholderLabel.bottomAnchor),
 
             commentPlaceholderLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 3),
             commentPlaceholderLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             commentPlaceholderLabel.topAnchor.constraint(equalTo: userImageView.topAnchor),
-            commentPlaceholderLabel.heightAnchor.constraint(greaterThanOrEqualTo: userImageView.heightAnchor),
 
             timeStampLabel.topAnchor.constraint(equalTo: commentPlaceholderLabel.bottomAnchor, constant: 4),
             timeStampLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -170,6 +173,10 @@ final class PostFooterView: UIView {
         button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .blackMain
         button.translatesAutoresizingMaskIntoConstraints = false
+        [
+            button.heightAnchor.constraint(equalToConstant: 24),
+            button.widthAnchor.constraint(equalTo: button.heightAnchor)
+        ].activate()
         return button
     }
 

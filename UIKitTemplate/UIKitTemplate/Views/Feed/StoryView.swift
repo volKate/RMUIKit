@@ -18,7 +18,7 @@ final class StoryView: UIView {
     // MARK: - Visual Components
 
     private lazy var avatarImageView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: story.avatar))
+        let view = UIImageView(image: UIImage(named: story.account.avatar))
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = Constants.avatarCornerRadius
@@ -36,7 +36,7 @@ final class StoryView: UIView {
         let label = UILabel()
         label.font = .verdana(ofSize: Constants.accountfontSize)
         label.textColor = story.isOwn ? .grayMain : .blackMain
-        label.text = story.isOwn ? Constants.ownStoryText : story.accountName
+        label.text = story.isOwn ? Constants.ownStoryText : story.account.name
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

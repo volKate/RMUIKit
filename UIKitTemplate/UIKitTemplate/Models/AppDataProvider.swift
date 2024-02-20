@@ -5,16 +5,15 @@ import Foundation
 
 /// Данные для ленты
 struct AppDataProvider {
-    static let shared = AppDataProvider()
+    private(set) static var shared = AppDataProvider()
+
     let currentUserAvatar = "rm_ka"
-    private let stories = [
-        Story(avatar: "rm_ka", accountName: "rm_ka", isOwn: true),
-        Story(avatar: "lavanda", accountName: "lavanda123"),
-        Story(avatar: "lavanda", accountName: "lavanda123"),
-        Story(avatar: "lavanda", accountName: "lavanda123"),
-        Story(avatar: "lavanda", accountName: "lavanda123"),
-        Story(avatar: "lavanda", accountName: "lavanda123"),
-        Story(avatar: "lavanda", accountName: "lavanda123")
+    private let accounts = [
+        Account(name: "rm_ka", avatar: "rm_ka"),
+        Account(name: "lavanda123", avatar: "lavanda"),
+        Account(name: "nat_geo_wild", avatar: "nat_geo_wild"),
+        Account(name: "mallorca_resort", avatar: "mallorca_resort"),
+        Account(name: "shufik48", avatar: "shufik_48")
     ]
 
     private let posts = [
@@ -39,11 +38,15 @@ struct AppDataProvider {
     ]
 
     var storiesCount: Int {
-        stories.count
+        getStories().count
     }
 
     var postsCount: Int {
         posts.count
+    }
+
+    func getAccounts() -> [Account] {
+        accounts
     }
 
     func getPost(byIndex index: Int) -> Post {
@@ -55,6 +58,21 @@ struct AppDataProvider {
     }
 
     func getStories() -> [Story] {
-        stories
+        [
+            Story(account: accounts[0], isOwn: true),
+            Story(account: accounts[2]),
+            Story(account: accounts[2]),
+            Story(account: accounts[1]),
+            Story(account: accounts[1]),
+            Story(account: accounts[1]),
+            Story(account: accounts[1])
+        ]
+    }
+
+    func getRecommendations() -> [Recommendation] {
+        [
+            Recommendation(account: accounts[3]),
+            Recommendation(account: accounts[4])
+        ]
     }
 }

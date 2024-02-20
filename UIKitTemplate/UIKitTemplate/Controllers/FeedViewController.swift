@@ -19,6 +19,7 @@ final class FeedViewController: UIViewController {
         table.dataSource = self
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
+        table.register(RecommendationCell.self, forCellReuseIdentifier: RecommendationCell.reuseID)
         table.separatorStyle = .none
         table.rowHeight = UITableView.automaticDimension
         return table
@@ -104,8 +105,14 @@ extension FeedViewController: UITableViewDataSource {
             let post = AppDataProvider.shared.getPost(byIndex: isFirst ? indexPath.row : indexPath.row + 1)
             cell.setupCell(withPost: post)
             return cell
-        default:
-            return UITableViewCell()
+        case .recommendation:
+            guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: RecommendationCell.reuseID) as? RecommendationCell
+            else {
+                return UITableViewCell()
+            }
+            cell.setupCell(withRecommendations: AppDataProvider.shared.getRecommendations())
+            return cell
         }
     }
 }
