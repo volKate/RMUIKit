@@ -19,6 +19,8 @@ final class StoryView: UIView {
 
     private lazy var avatarImageView: UIImageView = {
         let view = UIImageView(image: UIImage(named: story.avatar))
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.layer.cornerRadius = Constants.avatarCornerRadius
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.whiteMain.cgColor

@@ -12,13 +12,13 @@ final class FeedViewController: UIViewController {
     }
 
     private let sections = [FeedSectionType.stories, .post(true), .recommendation, .post(false)]
-    private let dataProvider = FeedDataProvider()
 
     private lazy var feedTableView: UITableView = {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
+        table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
         table.separatorStyle = .none
         table.rowHeight = UITableView.automaticDimension
         return table
@@ -87,7 +87,7 @@ extension FeedViewController: UITableViewDataSource {
         case let .post(isFirst) where isFirst:
             return 1
         case .post:
-            return dataProvider.postsCount - 1
+            return AppDataProvider.shared.postsCount - 1
         }
     }
 
@@ -96,7 +96,13 @@ extension FeedViewController: UITableViewDataSource {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
             else { return UITableViewCell() }
-            cell.stories = dataProvider.getStories()
+            cell.stories = AppDataProvider.shared.getStories()
+            return cell
+        case let .post(isFirst):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseID) as? PostCell
+            else { return UITableViewCell() }
+            let post = AppDataProvider.shared.getPost(byIndex: isFirst ? indexPath.row : indexPath.row + 1)
+            cell.setupCell(withPost: post)
             return cell
         default:
             return UITableViewCell()
