@@ -5,10 +5,16 @@ import UIKit
 
 /// Нотификация с кнопкой подписаться/отписаться
 final class SubscribeNotificationCell: UITableViewCell {
+    // MARK: - Constants
+
     static let reuseID = "SubscribeNotificationCell"
+
+    // MARK: - Visual Components
 
     private let subscribeButton = SubscribeButton()
     private let notificationBaseView = NotificationBaseView()
+
+    // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,10 +26,14 @@ final class SubscribeNotificationCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
     func setupCell(withNotification notification: LinkNotification) {
         notificationBaseView.notification = notification
         subscribeButton.isSubscribed = notification.isSubscribed
     }
+
+    // MARK: - Private Methods
 
     private func setupCell() {
         selectionStyle = .none

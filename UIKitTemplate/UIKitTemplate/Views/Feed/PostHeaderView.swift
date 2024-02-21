@@ -11,6 +11,8 @@ final class PostHeaderView: UIView {
         static let menuButtonImage = "ellipsis"
     }
 
+    // MARK: - Visual Components
+
     private let avatarImageView = AvatarImageView()
 
     private let accountNameLabel: UILabel = {
@@ -31,6 +33,8 @@ final class PostHeaderView: UIView {
         return button
     }()
 
+    // MARK: - Public Properties
+
     var post: Post? {
         didSet {
             if let post {
@@ -39,6 +43,8 @@ final class PostHeaderView: UIView {
             }
         }
     }
+
+    // MARK: - Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,6 +55,8 @@ final class PostHeaderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         avatarImageView.size = 30.0

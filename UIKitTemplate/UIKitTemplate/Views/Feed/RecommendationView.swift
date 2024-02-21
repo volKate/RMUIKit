@@ -5,9 +5,13 @@ import UIKit
 
 /// Рекоммендация аккаунта с возможностью подписаться
 final class RecommendationView: UIView {
+    // MARK: - Constants
+
     private enum Constants {
         static let subscribeButtonText = "Подписаться"
     }
+
+    // MARK: - Visual Components
 
     private let accountImageView = AvatarImageView()
 
@@ -21,6 +25,8 @@ final class RecommendationView: UIView {
 
     private let subscribeButton = SubscribeButton()
 
+    // MARK: - Public Properties
+
     var account: Account? {
         didSet {
             if let account {
@@ -29,6 +35,8 @@ final class RecommendationView: UIView {
             }
         }
     }
+
+    // MARK: - Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +47,8 @@ final class RecommendationView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         accountImageView.size = 115.0

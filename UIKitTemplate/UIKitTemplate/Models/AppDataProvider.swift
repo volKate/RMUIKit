@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// Данные для ленты
+/// Моки для приложения
 struct AppDataProvider {
     private(set) static var shared = AppDataProvider()
 

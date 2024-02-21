@@ -167,10 +167,10 @@
 			children = (
 				DA6B827C2B84BEF20045044C /* Story.swift */,
 				DA6B827E2B84BF4B0045044C /* Post.swift */,
-				DA6B82802B84BF690045044C /* AppDataProvider.swift */,
 				DA6B828A2B8509700045044C /* Recommendation.swift */,
 				DA6B828C2B8509AA0045044C /* Account.swift */,
 				DA5409F02B853BDB00C350E2 /* LinkNotification.swift */,
+				DA6B82802B84BF690045044C /* AppDataProvider.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

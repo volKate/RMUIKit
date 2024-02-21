@@ -5,11 +5,15 @@ import UIKit
 
 /// Ячейка рекоммендации
 final class RecommendationCell: UITableViewCell {
+    // MARK: - Constants
+
     static let reuseID = "RecommendationCell"
     private enum Constants {
         static let recommendationLabelText = "Рекомендуем вам"
         static let allButtonText = "Все"
     }
+
+    // MARK: - Visual Components
 
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -46,6 +50,8 @@ final class RecommendationCell: UITableViewCell {
         return button
     }()
 
+    // MARK: - Initializers
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -54,6 +60,8 @@ final class RecommendationCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Public Methods
 
     func setupCell(withRecommendations recommendations: [Recommendation]) {
         selectionStyle = .none
@@ -75,6 +83,8 @@ final class RecommendationCell: UITableViewCell {
         setupConstraints()
         setupConstraints(forRecommendationViews: recommendationViews)
     }
+
+    // MARK: - Private Methods
 
     private func setupConstraints() {
         allButton.setContentHuggingPriority(.defaultLow + 1, for: .horizontal)

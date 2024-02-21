@@ -3,10 +3,15 @@
 
 import UIKit
 
+/// Экран профиля
 final class ProfileViewController: UIViewController {
+    // MARK: - Constants
+
     enum Constants {
         static let screenTitle = "Профиль"
     }
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

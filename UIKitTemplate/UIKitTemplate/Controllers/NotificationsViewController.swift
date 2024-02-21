@@ -3,13 +3,18 @@
 
 import UIKit
 
+/// Экран уведомлений
 final class NotificationsViewController: UIViewController {
+    // MARK: - Constants
+
     enum Constants {
         static let screenTitle = "Уведомления"
         static let subscribeRequestText = "Запросы на подписку"
         static let todaySectionTitle = "Сегодня"
         static let thisWeekSectionTitle = "На этой неделе"
     }
+
+    // MARK: - Visual Components
 
     private let subscribeRequestLabel: UILabel = {
         let label = UILabel()
@@ -31,11 +36,15 @@ final class NotificationsViewController: UIViewController {
         return tableView
     }()
 
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItem()
         setupView()
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         view.addSubview(subscribeRequestLabel)
@@ -63,6 +72,8 @@ final class NotificationsViewController: UIViewController {
         ].activate()
     }
 }
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension NotificationsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {

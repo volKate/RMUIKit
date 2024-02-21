@@ -5,13 +5,15 @@ import UIKit
 
 /// Лента постов
 final class FeedViewController: UIViewController {
+    // MARK: - Constants
+
     private enum FeedSectionType {
         case post(Bool)
         case stories
         case recommendation
     }
 
-    private let sections = [FeedSectionType.stories, .post(true), .recommendation, .post(false)]
+    // MARK: - Visual Components
 
     private lazy var feedTableView: UITableView = {
         let table = UITableView()
@@ -31,6 +33,10 @@ final class FeedViewController: UIViewController {
         return refreshControl
     }()
 
+    // MARK: - Private Properties
+
+    private let sections = [FeedSectionType.stories, .post(true), .recommendation, .post(false)]
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -38,6 +44,8 @@ final class FeedViewController: UIViewController {
         setupNavigationItem()
         setupView()
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         feedTableView.addSubview(refreshControl)
@@ -55,8 +63,6 @@ final class FeedViewController: UIViewController {
             feedTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ].activate()
     }
-
-    // MARK: - Private Methods
 
     private func setupNavigationItem() {
         let messagesBarItem = UIBarButtonItem(image: .messagesBarIcon.withRenderingMode(.alwaysOriginal))

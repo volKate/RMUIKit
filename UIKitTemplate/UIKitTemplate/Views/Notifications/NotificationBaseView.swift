@@ -5,7 +5,7 @@ import UIKit
 
 /// Базовое вью нотификации
 final class NotificationBaseView: UIView {
-    enum Constants {}
+    // MARK: - Visual Components
 
     private let avatarImageView = AvatarImageView()
 
@@ -15,6 +15,8 @@ final class NotificationBaseView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+
+    // MARK: - Public Properties
 
     var notification: LinkNotification? {
         didSet {
@@ -29,6 +31,8 @@ final class NotificationBaseView: UIView {
         }
     }
 
+    // MARK: - Initializers
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -38,6 +42,8 @@ final class NotificationBaseView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         avatarImageView.size = 40.0

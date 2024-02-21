@@ -8,7 +8,6 @@ final class PostCell: UITableViewCell {
     // MARK: - Constants
 
     static let reuseID = "PostCell"
-    private enum Constants {}
 
     // MARK: - Visual Components
 
@@ -33,6 +32,8 @@ final class PostCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Public Properties
 
     func setupCell(withPost post: Post) {
         selectionStyle = .none

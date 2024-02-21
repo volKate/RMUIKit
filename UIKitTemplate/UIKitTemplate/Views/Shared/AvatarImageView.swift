@@ -3,7 +3,10 @@
 
 import UIKit
 
+/// Скругленная аватарка
 final class AvatarImageView: UIImageView {
+    // MARK: - Public Properties
+
     var size: CGFloat? {
         didSet {
             if let size {
@@ -15,6 +18,8 @@ final class AvatarImageView: UIImageView {
             }
         }
     }
+
+    // MARK: - Initializers
 
     convenience init() {
         self.init(frame: .zero)
@@ -34,6 +39,8 @@ final class AvatarImageView: UIImageView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         contentMode = .scaleAspectFill

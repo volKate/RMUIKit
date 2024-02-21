@@ -69,6 +69,8 @@ final class PostFooterView: UIView {
     private lazy var shareButton = makeIconButton(withImage: .send)
     private lazy var bookmarkButton = makeIconButton(withImage: .bookmark)
 
+    // MARK: - Public Properties
+
     var post: Post? {
         didSet {
             if let post {
@@ -88,6 +90,8 @@ final class PostFooterView: UIView {
         }
     }
 
+    // MARK: - Initializers
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -97,6 +101,8 @@ final class PostFooterView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Private Methods
 
     private func setupView() {
         userImageView.size = 20.0

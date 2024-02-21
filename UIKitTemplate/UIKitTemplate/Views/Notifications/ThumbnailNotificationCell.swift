@@ -5,7 +5,11 @@ import UIKit
 
 /// Нотификация с упоминанием поста
 final class ThumbnailNotificationCell: UITableViewCell {
+    // MARK: - Constants
+
     static let reuseID = "ThumbnailNotificationCell"
+
+    // MARK: - Visual Components
 
     private let notificationBaseView = NotificationBaseView()
     private let thumbnailImageView: UIImageView = {
@@ -20,6 +24,8 @@ final class ThumbnailNotificationCell: UITableViewCell {
         return imageView
     }()
 
+    // MARK: - Initializers
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -30,12 +36,16 @@ final class ThumbnailNotificationCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
     func setupCell(withNotification notification: LinkNotification) {
         notificationBaseView.notification = notification
         if let postThumbnail = notification.postThumbnail {
             thumbnailImageView.image = UIImage(named: postThumbnail)
         }
     }
+
+    // MARK: - Private Methods
 
     private func setupCell() {
         selectionStyle = .none

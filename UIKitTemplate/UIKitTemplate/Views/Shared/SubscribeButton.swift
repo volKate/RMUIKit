@@ -3,17 +3,24 @@
 
 import UIKit
 
+/// Копка подписаться/вы подписаны
 final class SubscribeButton: UIButton {
+    // MARK: - Constants
+
     private enum Constants {
         static let subscribeButtonText = "Подписаться"
         static let unsubscribeButtonText = "Вы подписаны"
     }
+
+    // MARK: - Public Properties
 
     var isSubscribed = false {
         didSet {
             setNeedsUpdateConfiguration()
         }
     }
+
+    // MARK: - Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +31,8 @@ final class SubscribeButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Private Methods
 
     private func setupButton() {
         configurationUpdateHandler = { [unowned self] _ in

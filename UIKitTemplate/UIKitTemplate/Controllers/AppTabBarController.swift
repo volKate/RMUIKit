@@ -13,6 +13,8 @@ final class AppTabBarController: UITabBarController {
         static let profileTitle = "Профиль"
     }
 
+    // MARK: - Visual Components
+
     private let topBorder: UIView = {
         let view = UIView()
         view.backgroundColor = .black01
