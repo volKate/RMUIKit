@@ -7,7 +7,7 @@ import UIKit
 final class ThumbnailNotificationCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = "ThumbnailNotificationCell"
+    static let reuseID = String(describing: ThumbnailNotificationCell.self)
 
     // MARK: - Visual Components
 
@@ -31,9 +31,9 @@ final class ThumbnailNotificationCell: UITableViewCell {
         setupCell()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupCell()
     }
 
     // MARK: - Public Methods

@@ -10,8 +10,6 @@ final class NotificationsViewController: UIViewController {
     enum Constants {
         static let screenTitle = "Уведомления"
         static let subscribeRequestText = "Запросы на подписку"
-        static let todaySectionTitle = "Сегодня"
-        static let thisWeekSectionTitle = "На этой неделе"
     }
 
     // MARK: - Visual Components
@@ -36,6 +34,10 @@ final class NotificationsViewController: UIViewController {
         return tableView
     }()
 
+    // MARK: - Private Properties
+
+    private let dataProvider = AppDataProvider()
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -53,11 +55,11 @@ final class NotificationsViewController: UIViewController {
     }
 
     private func setupNavigationItem() {
-        let titleLabel = UILabel()
-        titleLabel.font = .verdanaBold(ofSize: 22)
-        titleLabel.text = Constants.screenTitle
-        titleLabel.textAlignment = .left
-        navigationItem.setLeftBarButton(UIBarButtonItem(customView: titleLabel), animated: false)
+        title = Constants.screenTitle
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            .font: UIFont.verdanaBold(ofSize: 28) ?? UIFont.boldSystemFont(ofSize: 28)
+        ]
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     private func setupConstraints() {
@@ -73,63 +75,55 @@ final class NotificationsViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
+// MARK: - NotificationsViewController + UITableViewDataSource
 
-extension NotificationsViewController: UITableViewDataSource, UITableViewDelegate {
+extension NotificationsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        dataProvider.notificationsTableHeaders.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return AppDataProvider.shared.todaysNotifications.count
-        case 1:
-            return AppDataProvider.shared.thisWeekNotifications.count
-        default:
-            return 0
-        }
+        dataProvider.notificationsBySection[section].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var notification: LinkNotification?
-        switch indexPath.section {
-        case 0:
-            notification = AppDataProvider.shared.todaysNotifications[indexPath.row]
-        case 1:
-            notification = AppDataProvider.shared.thisWeekNotifications[indexPath.row]
-        default:
-            break
+        let notifications = dataProvider.notificationsBySection[indexPath.section]
+        let notification = notifications[indexPath.row]
+        switch notification.type {
+        case .subscribe:
+            guard let cell = tableView
+                .dequeueReusableCell(
+                    withIdentifier: SubscribeNotificationCell
+                        .reuseID
+                ) as? SubscribeNotificationCell else { return .init() }
+            cell.setupCell(withNotification: notification)
+            return cell
+        case .post:
+            guard let cell = tableView
+                .dequeueReusableCell(
+                    withIdentifier: ThumbnailNotificationCell
+                        .reuseID
+                ) as? ThumbnailNotificationCell else { return .init() }
+            cell.setupCell(withNotification: notification)
+            return cell
         }
+    }
+}
 
-        if let notification {
-            if notification.postThumbnail == nil {
-                guard let cell = tableView
-                    .dequeueReusableCell(
-                        withIdentifier: SubscribeNotificationCell
-                            .reuseID
-                    ) as? SubscribeNotificationCell else { return UITableViewCell() }
-                cell.setupCell(withNotification: notification)
-                return cell
-            } else {
-                guard let cell = tableView
-                    .dequeueReusableCell(
-                        withIdentifier: ThumbnailNotificationCell
-                            .reuseID
-                    ) as? ThumbnailNotificationCell else { return UITableViewCell() }
-                cell.setupCell(withNotification: notification)
-                return cell
-            }
-        }
+// MARK: - NotificationsViewController + UITableViewDelegate
 
-        return UITableViewCell()
+extension NotificationsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = makeSectionHeader(withText: dataProvider.notificationsTableHeaders[section])
+        return headerView
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    private func makeSectionHeader(withText text: String) -> UIView {
         let headerView = UIView()
         headerView.backgroundColor = .systemBackground
         let label = UILabel()
         label.font = .verdanaBold(ofSize: 14)
+        label.text = text
         label.translatesAutoresizingMaskIntoConstraints = false
         headerView.addSubview(label)
         [
@@ -138,14 +132,6 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
             label.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -13),
             label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor)
         ].activate()
-        switch section {
-        case 0:
-            label.text = Constants.todaySectionTitle
-        case 1:
-            label.text = Constants.thisWeekSectionTitle
-        default:
-            break
-        }
         return headerView
     }
 }

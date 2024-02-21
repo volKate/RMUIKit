@@ -21,12 +21,7 @@ final class NotificationBaseView: UIView {
     var notification: LinkNotification? {
         didSet {
             if let notification {
-                avatarImageView.image = UIImage(named: notification.account.avatar)
-                commentLabel.attributedText = makeCommentAtributedText(
-                    accountName: notification.account.name,
-                    comment: notification.message,
-                    hoursAgo: notification.hoursAgo
-                )
+                setupView(withNotification: notification)
             }
         }
     }
@@ -38,9 +33,9 @@ final class NotificationBaseView: UIView {
         setupView()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupView()
     }
 
     // MARK: - Private Methods
@@ -51,6 +46,15 @@ final class NotificationBaseView: UIView {
         addSubview(commentLabel)
 
         setupConstraints()
+    }
+
+    private func setupView(withNotification notification: LinkNotification) {
+        avatarImageView.image = UIImage(named: notification.account.avatar)
+        commentLabel.attributedText = makeCommentAtributedText(
+            accountName: notification.account.name,
+            comment: notification.message,
+            hoursAgo: notification.hoursAgo
+        )
     }
 
     private func setupConstraints() {

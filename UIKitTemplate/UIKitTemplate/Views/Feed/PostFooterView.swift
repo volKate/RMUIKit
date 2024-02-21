@@ -44,7 +44,7 @@ final class PostFooterView: UIView {
         return label
     }()
 
-    private let userImageView = AvatarImageView(image: UIImage(named: AppDataProvider.shared.currentUserAvatar))
+    private lazy var userImageView = AvatarImageView(image: UIImage(named: dataProvider.currentUserAccount.avatar))
 
     private let commentPlaceholderLabel: UILabel = {
         let label = UILabel()
@@ -74,12 +74,7 @@ final class PostFooterView: UIView {
     var post: Post? {
         didSet {
             if let post {
-                sliderPageControl.numberOfPages = post.postImages.count
-                likesLabel.text = "\(Constants.likesLabelText) \(post.likesCount)"
-                descriptionLabel.attributedText = makeDescriptionAtributedText(
-                    accountName: post.account.name,
-                    description: post.postDescription
-                )
+                setupView(withPost: post)
             }
         }
     }
@@ -90,6 +85,10 @@ final class PostFooterView: UIView {
         }
     }
 
+    // MARK: - Private Properties
+
+    private let dataProvider = AppDataProvider()
+
     // MARK: - Initializers
 
     override init(frame: CGRect) {
@@ -97,9 +96,9 @@ final class PostFooterView: UIView {
         setupView()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupView()
     }
 
     // MARK: - Private Methods
@@ -120,6 +119,15 @@ final class PostFooterView: UIView {
         ].forEach { addSubview($0) }
 
         setupConstraints()
+    }
+
+    private func setupView(withPost post: Post) {
+        sliderPageControl.numberOfPages = post.postImages.count
+        likesLabel.text = "\(Constants.likesLabelText) \(post.likesCount)"
+        descriptionLabel.attributedText = makeDescriptionAtributedText(
+            accountName: post.account.name,
+            description: post.postDescription
+        )
     }
 
     private func setupConstraints() {

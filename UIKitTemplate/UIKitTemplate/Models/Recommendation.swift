@@ -1,9 +1,8 @@
 // Recommendation.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Рекоммендация аакаунта
 struct Recommendation {
+    /// Информация о рекоммендованном аккаунте
     let account: Account
 }

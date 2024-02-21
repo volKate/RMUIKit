@@ -1,10 +1,10 @@
 // Account.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Аккаунт юзера
 struct Account {
+    /// никнейм
     let name: String
+    /// имя картинки профиля
     let avatar: String
 }

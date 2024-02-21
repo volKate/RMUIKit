@@ -7,7 +7,10 @@ import UIKit
 final class PostCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = "PostCell"
+    static let reuseID = String(describing: PostCell.self)
+    enum Constants {
+        static let postImageRatio = 1.56
+    }
 
     // MARK: - Visual Components
 
@@ -28,9 +31,8 @@ final class PostCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 
     // MARK: - Public Properties
@@ -49,7 +51,10 @@ final class PostCell: UITableViewCell {
         contentView.addSubview(imageSliderView)
 
         setupConstraints(forSlideViews: slideViews)
+        setupConstraints()
+    }
 
+    private func setupConstraints() {
         [
             postHeaderView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             postHeaderView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -65,10 +70,8 @@ final class PostCell: UITableViewCell {
             contentView.trailingAnchor.constraint(equalTo: postFooterView.trailingAnchor, constant: 12)
         ].activate()
     }
-}
 
-/// Настройка фото-слайдов
-extension PostCell {
+    /// Настройка фото-слайдов
     private func makeSliderImageViews(post: Post) -> [UIImageView] {
         post.postImages.map {
             let postImageView = UIImageView(image: UIImage(named: $0))
@@ -86,7 +89,10 @@ extension PostCell {
                 postImageView.bottomAnchor.constraint(equalTo: imageSliderView.bottomAnchor),
                 postImageView.heightAnchor.constraint(equalTo: imageSliderView.heightAnchor),
                 postImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-                postImageView.widthAnchor.constraint(equalTo: postImageView.heightAnchor, multiplier: 1.56)
+                postImageView.widthAnchor.constraint(
+                    equalTo: postImageView.heightAnchor,
+                    multiplier: Constants.postImageRatio
+                )
             ].activate()
             if let prevPostImageView {
                 postImageView.leadingAnchor.constraint(equalTo: prevPostImageView.trailingAnchor).isActive = true

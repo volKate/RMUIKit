@@ -5,19 +5,10 @@ import UIKit
 
 /// Лента постов
 final class FeedViewController: UIViewController {
-    // MARK: - Constants
-
-    private enum FeedSectionType {
-        case post(Bool)
-        case stories
-        case recommendation
-    }
-
     // MARK: - Visual Components
 
     private lazy var feedTableView: UITableView = {
         let table = UITableView()
-        table.delegate = self
         table.dataSource = self
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
@@ -35,7 +26,7 @@ final class FeedViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let sections = [FeedSectionType.stories, .post(true), .recommendation, .post(false)]
+    private let dataProvider = AppDataProvider()
 
     // MARK: - Life Cycle
 
@@ -76,48 +67,44 @@ final class FeedViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDelegate
-
-extension FeedViewController: UITableViewDelegate {}
-
-// MARK: - UITableViewDataSource
+// MARK: - FeedViewController + UITableViewDataSource
 
 extension FeedViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        sections.count
+        dataProvider.feedSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch sections[section] {
-        case .stories, .recommendation:
+        switch dataProvider.feedSections[section] {
+        case .stories, .recommendation, .firstPost:
             return 1
-        case let .post(isFirst) where isFirst:
-            return 1
-        case .post:
-            return AppDataProvider.shared.posts.count - 1
+        case .posts:
+            return dataProvider.posts.count
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch sections[indexPath.section] {
+        switch dataProvider.feedSections[indexPath.section] {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
-            else { return UITableViewCell() }
-            cell.stories = AppDataProvider.shared.stories
+            else { return .init() }
+            cell.stories = dataProvider.stories
             return cell
-        case let .post(isFirst):
+        case .firstPost:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseID) as? PostCell
-            else { return UITableViewCell() }
-            let post = AppDataProvider.shared.getPost(byIndex: isFirst ? indexPath.row : indexPath.row + 1)
-            cell.setupCell(withPost: post)
+            else { return .init() }
+            cell.setupCell(withPost: dataProvider.firstPost)
+            return cell
+        case .posts:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseID) as? PostCell
+            else { return .init() }
+            cell.setupCell(withPost: dataProvider.posts[indexPath.row])
             return cell
         case .recommendation:
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: RecommendationCell.reuseID) as? RecommendationCell
-            else {
-                return UITableViewCell()
-            }
-            cell.setupCell(withRecommendations: AppDataProvider.shared.recommendations)
+            else { return .init() }
+            cell.setupCell(withRecommendations: dataProvider.recommendations)
             return cell
         }
     }

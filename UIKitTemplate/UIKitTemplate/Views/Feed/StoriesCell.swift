@@ -7,7 +7,7 @@ import UIKit
 final class StoriesCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = "StoriesCell"
+    static let reuseID = String(describing: StoriesCell.self)
 
     // MARK: - Visual Components
 
@@ -29,9 +29,9 @@ final class StoriesCell: UITableViewCell {
         setupCell()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupCell()
     }
 
     // MARK: - Private Methods

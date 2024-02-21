@@ -1,12 +1,13 @@
 // Story.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Модель истории
 struct Story {
+    /// Информация об аккаунте
     let account: Account
+    /// Статус истории, активная = не просмотренная
     var isActive = false
+    /// Принадлежит залогиненному юзеру
     let isOwn: Bool
 
     init(account: Account, isActive: Bool = false, isOwn: Bool = false) {

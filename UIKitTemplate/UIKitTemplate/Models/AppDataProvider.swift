@@ -1,15 +1,23 @@
 // AppDataProvider.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Моки для приложения
 struct AppDataProvider {
-    private(set) static var shared = AppDataProvider()
+    /// Виды секций ленты
+    enum FeedSectionType {
+        case firstPost
+        case posts
+        case stories
+        case recommendation
+    }
 
-    let currentUserAvatar = "rm_ka"
+    /// порядок секций в ленте
+    let feedSections = [FeedSectionType.stories, .firstPost, .recommendation, .posts]
+
+    /// аккаунт залогиненного юзера
+    let currentUserAccount = Account(name: "rm_ka", avatar: "rm_ka")
+    /// все аккаунты
     var accounts = [
-        Account(name: "rm_ka", avatar: "rm_ka"),
         Account(name: "lavanda123", avatar: "lavanda"),
         Account(name: "nat_geo_wild", avatar: "nat_geo_wild"),
         Account(name: "mallorca_resort", avatar: "mallorca_resort"),
@@ -19,68 +27,82 @@ struct AppDataProvider {
         Account(name: "tur_v_dagestan", avatar: "turAvatar")
     ]
 
+    /// все нотификации
     var allNotifications: [LinkNotification] {
         [
             LinkNotification(
-                account: accounts[1],
+                account: accounts[0],
                 message: "понравился ваш комментарий: \"Очень красиво!\"",
                 hoursAgo: 12,
                 postThumbnail: "postImage1"
             ),
             LinkNotification(
-                account: accounts[1],
+                account: accounts[0],
                 message: "упомянул(-а) вас в комментарии: @rm_ka Спасибо!",
                 hoursAgo: 12,
                 postThumbnail: "postImage1"
             ),
             LinkNotification(
-                account: accounts[1],
+                account: accounts[0],
                 message: "понравился ваш комментарий: \"Это где?\"",
                 hoursAgo: 72,
                 postThumbnail: "postImage2"
             ),
             LinkNotification(
-                account: accounts[5],
+                account: accounts[4],
                 message: "появился(-ась) в RMLink. Вы можете быть знакомы",
-                hoursAgo: 72
+                hoursAgo: 72,
+                isSubscribed: false
             ),
             LinkNotification(
-                account: accounts[1],
+                account: accounts[0],
                 message: "подписался(-ась) на ваши новости",
                 hoursAgo: 120,
                 isSubscribed: true
             ),
             LinkNotification(
-                account: accounts[1],
+                account: accounts[0],
                 message: "понравился ваш комментарий: \"Ты вернулась?\"",
                 hoursAgo: 168,
                 postThumbnail: "postImage2"
             ),
             LinkNotification(
-                account: accounts[4],
+                account: accounts[3],
                 message: "появился(-ась) в RMLink. Вы можете быть знакомы",
-                hoursAgo: 192
+                hoursAgo: 192,
+                isSubscribed: false
             ),
             LinkNotification(
-                account: accounts[6],
+                account: accounts[5],
                 message: "появился(-ась) в RMLink. Вы можете быть знакомы",
-                hoursAgo: 192
+                hoursAgo: 192,
+                isSubscribed: false
             ),
         ]
     }
 
+    /// нотификации за последние 24 часа
     var todaysNotifications: [LinkNotification] {
         allNotifications.filter { $0.hoursAgo < 25 }
     }
 
+    /// нотификации старше одного дня
     var thisWeekNotifications: [LinkNotification] {
         allNotifications.filter { $0.hoursAgo > 24 }
     }
 
-    var posts: [Post] {
+    /// заголовки груп нотфикаций
+    let notificationsTableHeaders = ["Сегодня", "На этой неделе"]
+    /// нотификации по секциям
+    var notificationsBySection: [[LinkNotification]] {
+        [todaysNotifications, thisWeekNotifications]
+    }
+
+    /// все посты
+    private var allPosts: [Post] {
         [
             Post(
-                account: accounts[2],
+                account: accounts[1],
                 postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
                 likesCount: 201,
                 postDescription: """
@@ -90,7 +112,7 @@ struct AppDataProvider {
                 """
             ),
             Post(
-                account: accounts[7],
+                account: accounts[6],
                 postImages: ["turPostImage1", "turPostImage2"],
                 likesCount: 201,
                 postDescription: "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
@@ -98,26 +120,39 @@ struct AppDataProvider {
         ]
     }
 
-    var stories: [Story] {
-        [
-            Story(account: accounts[0], isOwn: true),
-            Story(account: accounts[2]),
-            Story(account: accounts[2]),
-            Story(account: accounts[1]),
-            Story(account: accounts[1]),
-            Story(account: accounts[1]),
-            Story(account: accounts[1])
-        ]
+    /// первый пост
+    var firstPost: Post {
+        allPosts[0]
     }
 
-    var recommendations: [Recommendation] {
-        [
-            Recommendation(account: accounts[4]),
-            Recommendation(account: accounts[3])
-        ]
+    /// все посты в секции "остальные посты"
+    var posts: [Post] {
+        Array(allPosts[1...])
     }
 
+    /// получение поста по индексу
     func getPost(byIndex index: Int) -> Post {
         posts[index]
+    }
+
+    /// все истории
+    var stories: [Story] {
+        [
+            Story(account: currentUserAccount, isOwn: true),
+            Story(account: accounts[1]),
+            Story(account: accounts[1]),
+            Story(account: accounts[0]),
+            Story(account: accounts[0]),
+            Story(account: accounts[0]),
+            Story(account: accounts[0])
+        ]
+    }
+
+    /// все рекоммендации
+    var recommendations: [Recommendation] {
+        [
+            Recommendation(account: accounts[3]),
+            Recommendation(account: accounts[2])
+        ]
     }
 }

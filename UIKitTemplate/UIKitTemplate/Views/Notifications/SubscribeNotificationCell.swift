@@ -7,7 +7,7 @@ import UIKit
 final class SubscribeNotificationCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = "SubscribeNotificationCell"
+    static let reuseID = String(describing: SubscribeNotificationCell.self)
 
     // MARK: - Visual Components
 
@@ -21,9 +21,9 @@ final class SubscribeNotificationCell: UITableViewCell {
         setupCell()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupCell()
     }
 
     // MARK: - Public Methods

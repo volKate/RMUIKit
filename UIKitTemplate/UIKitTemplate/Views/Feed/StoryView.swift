@@ -9,7 +9,7 @@ final class StoryView: UIView {
 
     private enum Constants {
         static let avatarSize = 62.0
-        static let avatarCornerRadius = 30.0
+        static let avatarCornerRadius = avatarSize / 2
         static let accountfontSize = 8.0
         static let storyWidth = 74.0
         static let ownStoryText = "Ваша история"
@@ -18,7 +18,7 @@ final class StoryView: UIView {
     // MARK: - Visual Components
 
     private lazy var avatarImageView: UIImageView = {
-        let view = AvatarImageView(image: UIImage(named: story.account.avatar))
+        let view = AvatarImageView(image: UIImage(named: story?.account.avatar ?? ""))
         view.size = Constants.avatarSize
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.whiteMain.cgColor
@@ -28,8 +28,10 @@ final class StoryView: UIView {
     private lazy var accountNameLabel: UILabel = {
         let label = UILabel()
         label.font = .verdana(ofSize: Constants.accountfontSize)
-        label.textColor = story.isOwn ? .grayMain : .blackMain
-        label.text = story.isOwn ? Constants.ownStoryText : story.account.name
+        if let story {
+            label.textColor = story.isOwn ? .grayMain : .blackMain
+            label.text = story.isOwn ? Constants.ownStoryText : story.account.name
+        }
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,7 +39,7 @@ final class StoryView: UIView {
 
     // MARK: - Public Properties
 
-    let story: Story
+    var story: Story?
 
     // MARK: - Initializers
 
@@ -47,9 +49,9 @@ final class StoryView: UIView {
         setupView()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupView()
     }
 
     // MARK: - Private Methods

@@ -7,7 +7,7 @@ import UIKit
 final class RecommendationCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = "RecommendationCell"
+    static let reuseID = String(describing: RecommendationCell.self)
     private enum Constants {
         static let recommendationLabelText = "Рекомендуем вам"
         static let allButtonText = "Все"
@@ -56,9 +56,8 @@ final class RecommendationCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 
     // MARK: - Public Methods

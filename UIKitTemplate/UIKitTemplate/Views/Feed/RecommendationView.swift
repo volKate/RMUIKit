@@ -15,7 +15,7 @@ final class RecommendationView: UIView {
 
     private let accountImageView = AvatarImageView()
 
-    private lazy var accountNameLabel: UILabel = {
+    private let accountNameLabel: UILabel = {
         let label = UILabel()
         label.font = .verdana(ofSize: 10)
         label.textAlignment = .center
@@ -43,9 +43,9 @@ final class RecommendationView: UIView {
         setupView()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupView()
     }
 
     // MARK: - Private Methods

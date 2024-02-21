@@ -21,10 +21,6 @@ final class AvatarImageView: UIImageView {
 
     // MARK: - Initializers
 
-    convenience init() {
-        self.init(frame: .zero)
-    }
-
     override init(image: UIImage?) {
         super.init(image: image)
         setupView()
@@ -35,9 +31,13 @@ final class AvatarImageView: UIImageView {
         setupView()
     }
 
-    @available(*, unavailable)
+    convenience init() {
+        self.init(frame: .zero)
+    }
+
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupView()
     }
 
     // MARK: - Private Methods
