@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "profileBarIcon.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
