@@ -12,6 +12,8 @@ final class AccountInfoCell: UITableViewCell {
         static let subscribersStatName = "подписчики"
         static let subsriptionsStatName = "подписки"
         static let plusButtonImage = "plus"
+        static let editButtonText = "Изменить"
+        static let shareButtonText = "Поделиться профилем"
         static let plusButtonSize = 26.0
         static let plusButtonCornerRadius = plusButtonSize / 2
     }
@@ -23,6 +25,9 @@ final class AccountInfoCell: UITableViewCell {
     private lazy var publicationsStatsLabel = makeStatsLabel()
     private lazy var subscribersStatsLabel = makeStatsLabel()
     private lazy var subscriptionsStatsLabel = makeStatsLabel()
+    private lazy var editButton = makeActionButton(text: Constants.editButtonText)
+    private lazy var shareButton = makeActionButton(text: Constants.shareButtonText)
+    private lazy var accountButton = makeActionButton(image: .account)
     private lazy var accountImageView: UIImageView = {
         let imageView = AvatarImageView()
         imageView.size = 80
@@ -94,7 +99,10 @@ final class AccountInfoCell: UITableViewCell {
             plusButton,
             userNameLabel,
             descriptionLabel,
-            linkButton
+            linkButton,
+            editButton,
+            shareButton,
+            accountButton
         )
         setupConstraints()
     }
@@ -103,6 +111,7 @@ final class AccountInfoCell: UITableViewCell {
         setupAvatarConstraints()
         setupStatsConstraints()
         setupInfoConstraints()
+        setupActionButtonsConstraints()
     }
 
     private func setupAvatarConstraints() {
@@ -146,8 +155,22 @@ final class AccountInfoCell: UITableViewCell {
             descriptionLabel.trailingAnchor.constraint(equalTo: userNameLabel.trailingAnchor),
             linkButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 6),
             linkButton.leadingAnchor.constraint(equalTo: accountImageView.leadingAnchor),
+        ].activate()
+    }
 
-            linkButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+    private func setupActionButtonsConstraints() {
+//        accountButton.setContentHuggingPriority(.defaultLow + 1, for: .horizontal)
+        [
+            editButton.topAnchor.constraint(equalTo: linkButton.bottomAnchor, constant: 15),
+            shareButton.topAnchor.constraint(equalTo: editButton.topAnchor),
+            accountButton.topAnchor.constraint(equalTo: editButton.topAnchor),
+            editButton.leadingAnchor.constraint(equalTo: accountImageView.leadingAnchor),
+            accountButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            shareButton.leadingAnchor.constraint(equalTo: editButton.trailingAnchor, constant: 5),
+            accountButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 5),
+            editButton.widthAnchor.constraint(equalTo: shareButton.widthAnchor),
+            accountButton.widthAnchor.constraint(equalToConstant: 25),
+            editButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 
         ].activate()
     }
@@ -168,5 +191,18 @@ final class AccountInfoCell: UITableViewCell {
             .font: UIFont.verdana(ofSize: 10) ?? UIFont.systemFont(ofSize: 10)
         ]))
         return attributedText
+    }
+
+    private func makeActionButton(text: String? = nil, image: UIImage? = nil) -> UIButton {
+        let button = UIButton(configuration: .filled())
+        button.setImage(image, for: .normal)
+        button.configuration?.baseBackgroundColor = .grayLight
+        button.configuration?.baseForegroundColor = .blackMain
+        button.configuration?.attributedTitle = AttributedString(text ?? "", attributes: AttributeContainer([
+            .font: UIFont.verdanaBold(ofSize: 10) ?? UIFont.boldSystemFont(ofSize: 10)]))
+        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 5, bottom: 7, trailing: 5)
+        button.configuration?.cornerStyle = .large
+        button.disableAutoresizingMask()
+        return button
     }
 }
