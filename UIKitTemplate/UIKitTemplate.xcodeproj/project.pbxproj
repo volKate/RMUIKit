@@ -20,6 +20,8 @@
 		DA5409F82B854F9A00C350E2 /* NotificationBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */; };
 		DA5409FB2B85584E00C350E2 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */; };
 		DA5409FD2B8564C500C350E2 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5409FC2B8564C500C350E2 /* AvatarImageView.swift */; };
+		DA540A012B87C08900C350E2 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A002B87C08900C350E2 /* NSLayoutConstraint+Extension.swift */; };
+		DA540A032B87C0F500C350E2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A022B87C0F500C350E2 /* UIView+Extension.swift */; };
 		DA6B827D2B84BEF20045044C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827C2B84BEF20045044C /* Story.swift */; };
 		DA6B827F2B84BF4B0045044C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827E2B84BF4B0045044C /* Post.swift */; };
 		DA6B82812B84BF690045044C /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B82802B84BF690045044C /* DataProvider.swift */; };
@@ -51,6 +53,8 @@
 		DA5409F72B854F9A00C350E2 /* NotificationBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBaseView.swift; sourceTree = "<group>"; };
 		DA5409FA2B85584E00C350E2 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
 		DA5409FC2B8564C500C350E2 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
+		DA540A002B87C08900C350E2 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
+		DA540A022B87C0F500C350E2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		DA6B827C2B84BEF20045044C /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		DA6B827E2B84BF4B0045044C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DA6B82802B84BF690045044C /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 			children = (
 				DA5398422B83B1D600A31E90 /* UIFont+Extension.swift */,
 				DA5398482B83E7BC00A31E90 /* Array+Extension.swift */,
+				DA540A002B87C08900C350E2 /* NSLayoutConstraint+Extension.swift */,
+				DA540A022B87C0F500C350E2 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				DA6B828B2B8509700045044C /* Recommendation.swift in Sources */,
 				DA53984F2B840E8A00A31E90 /* StoryView.swift in Sources */,
 				DA53984D2B83EE4500A31E90 /* StoriesCell.swift in Sources */,
+				DA540A012B87C08900C350E2 /* NSLayoutConstraint+Extension.swift in Sources */,
 				DAFE7CF42B71802900F71686 /* FeedViewController.swift in Sources */,
 				DA6B827F2B84BF4B0045044C /* Post.swift in Sources */,
 				DA5409F42B85420200C350E2 /* ThumbnailNotificationCell.swift in Sources */,
@@ -341,6 +348,7 @@
 				DA6B82892B8508280045044C /* RecommendationCell.swift in Sources */,
 				DA5409F82B854F9A00C350E2 /* NotificationBaseView.swift in Sources */,
 				DA6B82812B84BF690045044C /* DataProvider.swift in Sources */,
+				DA540A032B87C0F500C350E2 /* UIView+Extension.swift in Sources */,
 				DA5409F12B853BDB00C350E2 /* LinkNotification.swift in Sources */,
 				DA6B827D2B84BEF20045044C /* Story.swift in Sources */,
 				DA6B828D2B8509AA0045044C /* Account.swift in Sources */,

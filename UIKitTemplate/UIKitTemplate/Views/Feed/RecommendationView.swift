@@ -5,7 +5,6 @@ import UIKit
 
 /// Рекоммендация аккаунта с возможностью подписаться
 final class RecommendationView: UIView {
-
     // MARK: - Visual Components
 
     private let accountImageView = AvatarImageView()
