@@ -87,7 +87,7 @@ final class PostFooterView: UIView {
 
     // MARK: - Private Properties
 
-    private let dataProvider = AppDataProvider()
+    private let dataProvider = DataProvider()
 
     // MARK: - Initializers
 

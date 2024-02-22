@@ -14,14 +14,6 @@ final class StoriesCell: UITableViewCell {
     private let scrollView = UIScrollView()
     private let contentContainerView = UIView()
 
-    // MARK: - Public Properties
-
-    var stories: [Story] = [] {
-        didSet {
-            setupStories()
-        }
-    }
-
     // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,6 +24,19 @@ final class StoriesCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupCell()
+    }
+
+    // MARK: - Public Methods
+
+    func setupCell(withStories stories: [Story]) {
+        contentContainerView.subviews.forEach { $0.removeFromSuperview() }
+        var storiesViews: [StoryView] = []
+        for item in stories {
+            let storyView = StoryView(story: item)
+            contentContainerView.addSubview(storyView)
+            storiesViews.append(storyView)
+        }
+        setupConstraints(forStoriesViews: storiesViews)
     }
 
     // MARK: - Private Methods
@@ -59,21 +64,8 @@ final class StoriesCell: UITableViewCell {
             contentContainerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ].activate()
     }
-}
 
-/// Настройка историй
-extension StoriesCell {
-    private func setupStories() {
-        contentContainerView.subviews.forEach { $0.removeFromSuperview() }
-        var storiesViews: [StoryView] = []
-        for item in stories {
-            let storyView = StoryView(story: item)
-            contentContainerView.addSubview(storyView)
-            storiesViews.append(storyView)
-        }
-        setupConstraints(forStoriesViews: storiesViews)
-    }
-
+    /// Настройка историй
     private func setupConstraints(forStoriesViews storiesViews: [StoryView]) {
         var prevStoryView: StoryView?
         for storyView in storiesViews {

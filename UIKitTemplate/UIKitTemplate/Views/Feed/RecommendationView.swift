@@ -5,11 +5,6 @@ import UIKit
 
 /// Рекоммендация аккаунта с возможностью подписаться
 final class RecommendationView: UIView {
-    // MARK: - Constants
-
-    private enum Constants {
-        static let subscribeButtonText = "Подписаться"
-    }
 
     // MARK: - Visual Components
 

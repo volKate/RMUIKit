@@ -1,13 +1,17 @@
-// AppDataProvider.swift
+// DataProvider.swift
 // Copyright © RoadMap. All rights reserved.
 
 /// Моки для приложения
-struct AppDataProvider {
+struct DataProvider {
     /// Виды секций ленты
     enum FeedSectionType {
+        /// первый пост
         case firstPost
+        /// остальные посты
         case posts
+        /// истории
         case stories
+        /// рекоммендации
         case recommendation
     }
 

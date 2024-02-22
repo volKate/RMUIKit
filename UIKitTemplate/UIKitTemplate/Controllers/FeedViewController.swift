@@ -26,7 +26,7 @@ final class FeedViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let dataProvider = AppDataProvider()
+    private let dataProvider = DataProvider()
 
     // MARK: - Life Cycle
 
@@ -84,11 +84,12 @@ extension FeedViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch dataProvider.feedSections[indexPath.section] {
+        let sectionType = dataProvider.feedSections[indexPath.section]
+        switch sectionType {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
             else { return .init() }
-            cell.stories = dataProvider.stories
+            cell.setupCell(withStories: dataProvider.stories)
             return cell
         case .firstPost:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseID) as? PostCell

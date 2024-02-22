@@ -7,11 +7,11 @@ import UIKit
 final class RecommendationCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: RecommendationCell.self)
     private enum Constants {
         static let recommendationLabelText = "Рекомендуем вам"
         static let allButtonText = "Все"
     }
+    static let reuseID = String(describing: RecommendationCell.self)
 
     // MARK: - Visual Components
 
@@ -123,8 +123,11 @@ final class RecommendationCell: UITableViewCell {
                     .isActive = true
             }
             if index == recommendationViews.count - 1 {
-                containerView.trailingAnchor.constraint(equalTo: recommendationView.trailingAnchor, constant: 17)
-                    .isActive = true
+                containerView.trailingAnchor.constraint(
+                    greaterThanOrEqualTo: recommendationView.trailingAnchor,
+                    constant: 17
+                )
+                .isActive = true
             }
             [
                 recommendationView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 21),

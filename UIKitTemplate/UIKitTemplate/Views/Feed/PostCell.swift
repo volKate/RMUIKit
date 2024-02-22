@@ -35,7 +35,7 @@ final class PostCell: UITableViewCell {
         super.init(coder: coder)
     }
 
-    // MARK: - Public Properties
+    // MARK: - Public Methods
 
     func setupCell(withPost post: Post) {
         selectionStyle = .none
@@ -53,6 +53,8 @@ final class PostCell: UITableViewCell {
         setupConstraints(forSlideViews: slideViews)
         setupConstraints()
     }
+
+    // MARK: - Private Methods
 
     private func setupConstraints() {
         [

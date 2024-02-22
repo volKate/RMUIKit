@@ -36,7 +36,7 @@ final class NotificationsViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let dataProvider = AppDataProvider()
+    private let dataProvider = DataProvider()
 
     // MARK: - Life Cycle
 
