@@ -106,6 +106,7 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: AccountInfoCell.reuseID) as? AccountInfoCell
             else { return .init() }
+            cell.configure(withAccount: dataProvider.currentUserAccount)
             return cell
         case .highlights:
             guard let cell = tableView

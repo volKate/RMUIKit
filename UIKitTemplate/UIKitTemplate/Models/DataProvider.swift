@@ -32,7 +32,16 @@ struct DataProvider {
     let profileSections = [ProfileSectionType.accountInfo, .highlights, .postsGrid]
 
     /// аккаунт залогиненного юзера
-    let currentUserAccount = Account(name: "rm_ka", avatar: "rm_ka")
+    let currentUserAccount = Account(
+        name: "rm_ka",
+        avatar: "rm_ka",
+        stats: AccountStats(publicationsCount: 67, subscribersCount: 458, subscriptionsCount: 120),
+        info: AccountInfo(
+            fullName: "Уставший Котик",
+            description: "Младший сотрудник RM_Future 🚀",
+            link: AccountInfo.Link(text: "www.spacex.com", link: "https://www.spacex.com/vehicles/starship/")
+        )
+    )
     /// все аккаунты
     var accounts = [
         Account(name: "lavanda123", avatar: "lavanda"),

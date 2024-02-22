@@ -5,7 +5,51 @@ import UIKit
 
 /// Шапка профиля
 final class AccountInfoCell: UITableViewCell {
+    // MARK: - Constants
+
+    enum Constants {
+        static let publicationsStatName = "публикации"
+        static let subscribersStatName = "подписчики"
+        static let subsriptionsStatName = "подписки"
+        static let plusButtonImage = "plus"
+        static let plusButtonSize = 26.0
+        static let plusButtonCornerRadius = plusButtonSize / 2
+    }
+
     static let reuseID = String(describing: AccountInfoCell.self)
+
+    // MARK: - Visual Components
+
+    private lazy var publicationsStatsLabel = makeStatsLabel()
+    private lazy var subscribersStatsLabel = makeStatsLabel()
+    private lazy var subscriptionsStatsLabel = makeStatsLabel()
+    private lazy var accountImageView: UIImageView = {
+        let imageView = AvatarImageView()
+        imageView.size = 80
+        return imageView
+    }()
+
+    private lazy var plusButton: UIButton = {
+        let plusButton = UIButton()
+        plusButton.setImage(UIImage(systemName: Constants.plusButtonImage), for: .normal)
+        plusButton.backgroundColor = .pinkMain
+        plusButton.tintColor = .whiteMain
+        plusButton.layer.cornerRadius = Constants.plusButtonCornerRadius
+        plusButton.disableAutoresizingMask()
+        plusButton.widthAnchor.constraint(equalToConstant: Constants.plusButtonSize).activate()
+        return plusButton
+    }()
+
+    private lazy var linkButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.disableAutoresizingMask()
+        return button
+    }()
+
+    private let userNameLabel = BaseBoldLabel()
+    private let descriptionLabel = BaseLabel()
+
+    // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -17,8 +61,112 @@ final class AccountInfoCell: UITableViewCell {
         setupCell()
     }
 
+    // MARK: - Public Methods
+
+    func configure(withAccount account: Account) {
+        publicationsStatsLabel.attributedText = makeStatsAtttributedText(
+            count: account.stats.publicationsCount,
+            statName: Constants.publicationsStatName
+        )
+        subscribersStatsLabel.attributedText = makeStatsAtttributedText(
+            count: account.stats.subscribersCount,
+            statName: Constants.subscribersStatName
+        )
+        subscriptionsStatsLabel.attributedText = makeStatsAtttributedText(
+            count: account.stats.subscriptionsCount,
+            statName: Constants.subsriptionsStatName
+        )
+        accountImageView.image = UIImage(named: account.avatar)
+        userNameLabel.text = account.info.fullName
+        descriptionLabel.text = account.info.description
+        linkButton.setTitle("📎\(account.info.link.text)", for: .normal)
+    }
+
+    // MARK: - Private Methods
+
     private func setupCell() {
         selectionStyle = .none
-        backgroundColor = .yellow
+        contentView.addSubviews(
+            publicationsStatsLabel,
+            subscribersStatsLabel,
+            subscriptionsStatsLabel,
+            accountImageView,
+            plusButton,
+            userNameLabel,
+            descriptionLabel,
+            linkButton
+        )
+        setupConstraints()
+    }
+
+    private func setupConstraints() {
+        setupAvatarConstraints()
+        setupStatsConstraints()
+        setupInfoConstraints()
+    }
+
+    private func setupAvatarConstraints() {
+        [
+            accountImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            accountImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            plusButton.heightAnchor.constraint(equalTo: plusButton.widthAnchor),
+            plusButton.bottomAnchor.constraint(equalTo: accountImageView.bottomAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: accountImageView.trailingAnchor)
+        ].activate()
+    }
+
+    private func setupStatsConstraints() {
+        [
+            publicationsStatsLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 22),
+            subscribersStatsLabel.topAnchor.constraint(equalTo: publicationsStatsLabel.topAnchor),
+            subscriptionsStatsLabel.topAnchor.constraint(equalTo: publicationsStatsLabel.topAnchor),
+            subscriptionsStatsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -33),
+            subscriptionsStatsLabel.leadingAnchor.constraint(
+                equalTo: subscribersStatsLabel.trailingAnchor,
+                constant: 1
+            ),
+            subscribersStatsLabel.leadingAnchor.constraint(equalTo: publicationsStatsLabel.trailingAnchor, constant: 1),
+            publicationsStatsLabel.leadingAnchor.constraint(
+                lessThanOrEqualTo: accountImageView.trailingAnchor,
+                constant: 46
+            ),
+            subscribersStatsLabel.widthAnchor.constraint(equalTo: publicationsStatsLabel.widthAnchor),
+            subscriptionsStatsLabel.widthAnchor.constraint(equalTo: publicationsStatsLabel.widthAnchor)
+        ].activate()
+    }
+
+    private func setupInfoConstraints() {
+        descriptionLabel.setContentHuggingPriority(.defaultLow - 1, for: .vertical)
+        [
+            accountImageView.bottomAnchor.constraint(equalTo: userNameLabel.topAnchor, constant: -9),
+            userNameLabel.leadingAnchor.constraint(equalTo: accountImageView.leadingAnchor),
+            userNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            descriptionLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: accountImageView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: userNameLabel.trailingAnchor),
+            linkButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 6),
+            linkButton.leadingAnchor.constraint(equalTo: accountImageView.leadingAnchor),
+
+            linkButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+
+        ].activate()
+    }
+
+    private func makeStatsLabel() -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.disableAutoresizingMask()
+        return label
+    }
+
+    private func makeStatsAtttributedText(count: Int, statName: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: "\(count)\n", attributes: [
+            .font: UIFont.verdanaBold(ofSize: 14) ?? UIFont.boldSystemFont(ofSize: 14)
+        ])
+        attributedText.append(NSAttributedString(string: statName, attributes: [
+            .font: UIFont.verdana(ofSize: 10) ?? UIFont.systemFont(ofSize: 10)
+        ]))
+        return attributedText
     }
 }
