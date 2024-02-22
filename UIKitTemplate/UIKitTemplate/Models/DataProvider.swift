@@ -15,8 +15,21 @@ struct DataProvider {
         case recommendation
     }
 
+    /// Виды секций профиля
+    enum ProfileSectionType {
+        ///  Шапка профиля
+        case accountInfo
+        /// Актуальные истории
+        case highlights
+        /// Коллекция постов
+        case postsGrid
+    }
+
     /// порядок секций в ленте
     let feedSections = [FeedSectionType.stories, .firstPost, .recommendation, .posts]
+
+    /// Порядок секций в профиле
+    let profileSections = [ProfileSectionType.accountInfo, .highlights, .postsGrid]
 
     /// аккаунт залогиненного юзера
     let currentUserAccount = Account(name: "rm_ka", avatar: "rm_ka")
