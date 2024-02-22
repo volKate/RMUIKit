@@ -9,10 +9,22 @@ struct Story {
     var isActive = false
     /// Принадлежит залогиненному юзеру
     let isOwn: Bool
+    /// Изображение в истории
+    var imageName: String
+    /// Имя актуальной истории
+    var highlightName: String = ""
 
-    init(account: Account, isActive: Bool = false, isOwn: Bool = false) {
+    init(
+        account: Account,
+        imageName: String,
+        isActive: Bool = false,
+        isOwn: Bool = false,
+        highlightName: String = ""
+    ) {
         self.account = account
+        self.imageName = imageName
         self.isActive = isActive
         self.isOwn = isOwn
+        self.highlightName = highlightName
     }
 }

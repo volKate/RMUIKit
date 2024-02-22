@@ -20,7 +20,7 @@ final class ProfileViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.register(AccountInfoCell.self, forCellReuseIdentifier: AccountInfoCell.reuseID)
-        tableView.register(HighlightsCell.self, forCellReuseIdentifier: HighlightsCell.reuseID)
+        tableView.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         tableView.register(PostsGridCell.self, forCellReuseIdentifier: PostsGridCell.reuseID)
 
         let refreshControl = UIRefreshControl()
@@ -110,8 +110,9 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         case .highlights:
             guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: HighlightsCell.reuseID) as? HighlightsCell
+                .dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
             else { return .init() }
+            cell.configure(withHighlights: dataProvider.highlights)
             return cell
 
         case .postsGrid:

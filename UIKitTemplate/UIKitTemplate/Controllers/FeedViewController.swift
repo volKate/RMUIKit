@@ -89,7 +89,7 @@ extension FeedViewController: UITableViewDataSource {
         case .stories:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
             else { return .init() }
-            cell.setupCell(withStories: dataProvider.stories)
+            cell.configure(withStories: dataProvider.stories)
             return cell
         case .firstPost:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseID) as? PostCell

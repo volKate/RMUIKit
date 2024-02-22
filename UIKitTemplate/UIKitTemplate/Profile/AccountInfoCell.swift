@@ -159,7 +159,6 @@ final class AccountInfoCell: UITableViewCell {
     }
 
     private func setupActionButtonsConstraints() {
-//        accountButton.setContentHuggingPriority(.defaultLow + 1, for: .horizontal)
         [
             editButton.topAnchor.constraint(equalTo: linkButton.bottomAnchor, constant: 15),
             shareButton.topAnchor.constraint(equalTo: editButton.topAnchor),
@@ -170,7 +169,7 @@ final class AccountInfoCell: UITableViewCell {
             accountButton.leadingAnchor.constraint(equalTo: shareButton.trailingAnchor, constant: 5),
             editButton.widthAnchor.constraint(equalTo: shareButton.widthAnchor),
             accountButton.widthAnchor.constraint(equalToConstant: 25),
-            editButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            editButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
 
         ].activate()
     }

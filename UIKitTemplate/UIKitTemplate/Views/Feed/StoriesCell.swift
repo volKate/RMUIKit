@@ -28,7 +28,7 @@ final class StoriesCell: UITableViewCell {
 
     // MARK: - Public Methods
 
-    func setupCell(withStories stories: [Story]) {
+    func configure(withStories stories: [Story]) {
         contentContainerView.subviews.forEach { $0.removeFromSuperview() }
         var storiesViews: [StoryView] = []
         for item in stories {
@@ -37,6 +37,17 @@ final class StoriesCell: UITableViewCell {
             storiesViews.append(storyView)
         }
         setupConstraints(forStoriesViews: storiesViews)
+    }
+
+    func configure(withHighlights highlights: [Story]) {
+        var highlightsViews: [HighlightView] = []
+        for highlight in highlights {
+            let highlightView = HighlightView()
+            highlightView.configure(withHighlight: highlight)
+            contentContainerView.addSubview(highlightView)
+            highlightsViews.append(highlightView)
+        }
+        setupConstraints(forStoriesViews: highlightsViews)
     }
 
     // MARK: - Private Methods
@@ -66,11 +77,11 @@ final class StoriesCell: UITableViewCell {
     }
 
     /// Настройка историй
-    private func setupConstraints(forStoriesViews storiesViews: [StoryView]) {
-        var prevStoryView: StoryView?
+    private func setupConstraints(forStoriesViews storiesViews: [UIView]) {
+        var prevStoryView: UIView?
         for storyView in storiesViews {
             if let prevStoryView {
-                storyView.leadingAnchor.constraint(equalTo: prevStoryView.trailingAnchor, constant: 8).isActive = true
+                storyView.leadingAnchor.constraint(equalTo: prevStoryView.trailingAnchor, constant: 16).isActive = true
             } else {
                 storyView.leadingAnchor.constraint(equalTo: contentContainerView.leadingAnchor, constant: 5)
                     .isActive = true

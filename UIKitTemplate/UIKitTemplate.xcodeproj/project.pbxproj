@@ -23,12 +23,12 @@
 		DA540A012B87C08900C350E2 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A002B87C08900C350E2 /* NSLayoutConstraint+Extension.swift */; };
 		DA540A032B87C0F500C350E2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A022B87C0F500C350E2 /* UIView+Extension.swift */; };
 		DA540A062B87C36700C350E2 /* AccountInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A052B87C36700C350E2 /* AccountInfoCell.swift */; };
-		DA540A082B87C37600C350E2 /* HighlightsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A072B87C37600C350E2 /* HighlightsCell.swift */; };
 		DA540A0A2B87C38300C350E2 /* PostsGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A092B87C38300C350E2 /* PostsGridCell.swift */; };
 		DA540A0C2B87CB3100C350E2 /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A0B2B87CB3100C350E2 /* BaseLabel.swift */; };
 		DA540A0E2B87CBC000C350E2 /* BaseBoldLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A0D2B87CBC000C350E2 /* BaseBoldLabel.swift */; };
 		DA540A102B87CD1C00C350E2 /* AccountStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A0F2B87CD1C00C350E2 /* AccountStats.swift */; };
 		DA540A122B87D82000C350E2 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A112B87D82000C350E2 /* AccountInfo.swift */; };
+		DA540A142B87F42C00C350E2 /* HighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA540A132B87F42C00C350E2 /* HighlightView.swift */; };
 		DA6B827D2B84BEF20045044C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827C2B84BEF20045044C /* Story.swift */; };
 		DA6B827F2B84BF4B0045044C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B827E2B84BF4B0045044C /* Post.swift */; };
 		DA6B82812B84BF690045044C /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B82802B84BF690045044C /* DataProvider.swift */; };
@@ -63,12 +63,12 @@
 		DA540A002B87C08900C350E2 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		DA540A022B87C0F500C350E2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		DA540A052B87C36700C350E2 /* AccountInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoCell.swift; sourceTree = "<group>"; };
-		DA540A072B87C37600C350E2 /* HighlightsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCell.swift; sourceTree = "<group>"; };
 		DA540A092B87C38300C350E2 /* PostsGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsGridCell.swift; sourceTree = "<group>"; };
 		DA540A0B2B87CB3100C350E2 /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
 		DA540A0D2B87CBC000C350E2 /* BaseBoldLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBoldLabel.swift; sourceTree = "<group>"; };
 		DA540A0F2B87CD1C00C350E2 /* AccountStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStats.swift; sourceTree = "<group>"; };
 		DA540A112B87D82000C350E2 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		DA540A132B87F42C00C350E2 /* HighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightView.swift; sourceTree = "<group>"; };
 		DA6B827C2B84BEF20045044C /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		DA6B827E2B84BF4B0045044C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DA6B82802B84BF690045044C /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -188,8 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				DA540A052B87C36700C350E2 /* AccountInfoCell.swift */,
-				DA540A072B87C37600C350E2 /* HighlightsCell.swift */,
 				DA540A092B87C38300C350E2 /* PostsGridCell.swift */,
+				DA540A132B87F42C00C350E2 /* HighlightView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -372,7 +372,6 @@
 				DA6B828F2B8512A60045044C /* RecommendationView.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DA6B82832B84C8350045044C /* PostCell.swift in Sources */,
-				DA540A082B87C37600C350E2 /* HighlightsCell.swift in Sources */,
 				DA5398452B83B53700A31E90 /* NotificationsViewController.swift in Sources */,
 				DA540A102B87CD1C00C350E2 /* AccountStats.swift in Sources */,
 				DA5398472B83B54400A31E90 /* ProfileViewController.swift in Sources */,
@@ -388,6 +387,7 @@
 				DA5409F12B853BDB00C350E2 /* LinkNotification.swift in Sources */,
 				DA6B827D2B84BEF20045044C /* Story.swift in Sources */,
 				DA6B828D2B8509AA0045044C /* Account.swift in Sources */,
+				DA540A142B87F42C00C350E2 /* HighlightView.swift in Sources */,
 				DA6B82872B84F6B20045044C /* PostFooterView.swift in Sources */,
 				DA5409FD2B8564C500C350E2 /* AvatarImageView.swift in Sources */,
 			);

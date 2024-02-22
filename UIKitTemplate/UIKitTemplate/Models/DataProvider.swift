@@ -164,13 +164,27 @@ struct DataProvider {
     /// все истории
     var stories: [Story] {
         [
-            Story(account: currentUserAccount, isOwn: true),
-            Story(account: accounts[1]),
-            Story(account: accounts[1]),
-            Story(account: accounts[0]),
-            Story(account: accounts[0]),
-            Story(account: accounts[0]),
-            Story(account: accounts[0])
+            Story(account: currentUserAccount, imageName: "story1", isOwn: true),
+            Story(account: accounts[1], imageName: "story2"),
+            Story(account: accounts[1], imageName: "story2"),
+            Story(account: accounts[0], imageName: "story3"),
+            Story(account: accounts[0], imageName: "story3"),
+            Story(account: accounts[0], imageName: "story3"),
+            Story(account: accounts[0], imageName: "story3")
+        ]
+    }
+
+    /// все актуальные истории
+    var highlights: [Story] {
+        [
+            Story(account: currentUserAccount, imageName: "story1", highlightName: "mood"),
+            Story(account: currentUserAccount, imageName: "story2", highlightName: "Король"),
+            Story(account: currentUserAccount, imageName: "story4", highlightName: "Отпуск"),
+            Story(account: currentUserAccount, imageName: "story5", highlightName: "Наташ"),
+            Story(account: currentUserAccount, imageName: "story1", highlightName: "mood"),
+            Story(account: currentUserAccount, imageName: "story2", highlightName: "Король"),
+            Story(account: currentUserAccount, imageName: "story4", highlightName: "Отпуск"),
+            Story(account: currentUserAccount, imageName: "story5", highlightName: "Наташ")
         ]
     }
 
