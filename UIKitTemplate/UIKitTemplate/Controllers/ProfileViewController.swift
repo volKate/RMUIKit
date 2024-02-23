@@ -118,6 +118,7 @@ extension ProfileViewController: UITableViewDataSource {
         case .postsGrid:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostsGridCell.reuseID) as? PostsGridCell
             else { return .init() }
+            cell.configure(withPosts: dataProvider.posts)
             return cell
         }
     }
