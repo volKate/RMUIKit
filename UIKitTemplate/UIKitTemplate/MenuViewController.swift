@@ -77,8 +77,11 @@ extension MenuViewController: UITableViewDelegate {
             else { return }
             navigationController?.pushViewController(lightsStoryboardviewController, animated: true)
         case .anchors:
-            let lightAnchorsViewController = LightsAnchorsViewController()
-            navigationController?.pushViewController(lightAnchorsViewController, animated: true)
+            let lightsAnchorsViewController = LightsAnchorsViewController()
+            navigationController?.pushViewController(lightsAnchorsViewController, animated: true)
+        case .nsConstraints:
+            let lightsConstraintsViewController = LightsConstraintsViewController()
+            navigationController?.pushViewController(lightsConstraintsViewController, animated: true)
         default:
             break
         }

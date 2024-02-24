@@ -4,7 +4,7 @@
 import UIKit
 
 /// Базовый класс имплементации светофора
-class LightsViewController: UIViewController {
+class LightsImplementationViewController: UIViewController {
     // MARK: - Constants
 
     enum Constants {

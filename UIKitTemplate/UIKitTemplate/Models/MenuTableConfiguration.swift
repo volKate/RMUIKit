@@ -18,7 +18,7 @@ struct MenuTableConfiguration {
     }
 
     /// Реализованные имплементации
-    let lightsTaskImplementations: [LightsTaskImplementation] = [.storyboard, .anchors]
+    let lightsTaskImplementations: [LightsTaskImplementation] = [.storyboard, .nsConstraints, .anchors]
     /// Мапа имплементаций к лейблам ячеек
     let taskImplementationsNameMap: [LightsTaskImplementation: String] = [
         .storyboard: "Storyboard",

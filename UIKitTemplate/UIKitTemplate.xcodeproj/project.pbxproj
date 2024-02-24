@@ -11,6 +11,7 @@
 		DA37850E2B8A22B7005A190A /* MenuTableConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37850D2B8A22B7005A190A /* MenuTableConfiguration.swift */; };
 		DA3785102B8A2780005A190A /* LightsAnchorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37850F2B8A2780005A190A /* LightsAnchorsViewController.swift */; };
 		DA3785162B8A31F8005A190A /* LightsImplementationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */; };
+		DA3785192B8A3426005A190A /* LightsConstraintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3785182B8A3426005A190A /* LightsConstraintsViewController.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* MenuViewController.swift */; };
@@ -24,6 +25,7 @@
 		DA37850D2B8A22B7005A190A /* MenuTableConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableConfiguration.swift; sourceTree = "<group>"; };
 		DA37850F2B8A2780005A190A /* LightsAnchorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsAnchorsViewController.swift; sourceTree = "<group>"; };
 		DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsImplementationViewController.swift; sourceTree = "<group>"; };
+		DA3785182B8A3426005A190A /* LightsConstraintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsConstraintsViewController.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 			path = Anchors;
 			sourceTree = "<group>";
 		};
+		DA3785172B8A340D005A190A /* Constraints */ = {
+			isa = PBXGroup;
+			children = (
+				DA3785182B8A3426005A190A /* LightsConstraintsViewController.swift */,
+			);
+			path = Constraints;
+			sourceTree = "<group>";
+		};
 		DAFE7CE32B71802900F71686 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +112,7 @@
 				DA3785132B8A27C3005A190A /* Models */,
 				DA3785122B8A279F005A190A /* Storyboard */,
 				DA3785142B8A27D1005A190A /* Anchors */,
+				DA3785172B8A340D005A190A /* Constraints */,
 				DAFE7CF32B71802900F71686 /* MenuViewController.swift */,
 				DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */,
 				DAFE7CF82B71802C00F71686 /* Assets.xcassets */,
@@ -229,6 +240,7 @@
 			files = (
 				DA37850E2B8A22B7005A190A /* MenuTableConfiguration.swift in Sources */,
 				DAFE7CF42B71802900F71686 /* MenuViewController.swift in Sources */,
+				DA3785192B8A3426005A190A /* LightsConstraintsViewController.swift in Sources */,
 				DA3785102B8A2780005A190A /* LightsAnchorsViewController.swift in Sources */,
 				DA3785162B8A31F8005A190A /* LightsImplementationViewController.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
