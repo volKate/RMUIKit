@@ -3,6 +3,12 @@
 
 import UIKit
 
+/// Протокол обработки событий на StoryView/HighlightView
+protocol StoryViewDelegate: AnyObject {
+    /// Открыть историю в полном формате
+    func viewStory(_ story: Story)
+}
+
 final class HighlightView: UIView {
     // MARK: - Constants
 
@@ -15,19 +21,30 @@ final class HighlightView: UIView {
 
     // MARK: - Visual Components
 
-    private let avatarImageView: UIImageView = {
-        let view = AvatarImageView()
-        view.size = Constants.avatarSize
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.whiteMain.cgColor
-        return view
-    }()
-
     private let highlightNameLabel: UILabel = {
         let label = BaseLabel(size: Constants.nameFontSize)
         label.textAlignment = .center
         return label
     }()
+
+    private lazy var avatarImageView: UIImageView = {
+        let imageView = AvatarImageView()
+        imageView.size = Constants.avatarSize
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.whiteMain.cgColor
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hightlightTapped(_:)))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        return imageView
+    }()
+
+    // MARK: - Public Properties
+
+    var delegate: StoryViewDelegate?
+
+    // MARK: - Private Properties
+
+    private var highlight: Story?
 
     // MARK: - Initializers
 
@@ -44,6 +61,7 @@ final class HighlightView: UIView {
     // MARK: - Public Methods
 
     func configure(withHighlight highlight: Story) {
+        self.highlight = highlight
         avatarImageView.image = UIImage(named: highlight.imageName)
         highlightNameLabel.text = highlight.highlightName
     }
@@ -69,5 +87,11 @@ final class HighlightView: UIView {
             highlightNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             highlightNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
         ].activate()
+    }
+
+    @objc private func hightlightTapped(_ gestureRecornizer: UITapGestureRecognizer) {
+        if let highlight {
+            delegate?.viewStory(highlight)
+        }
     }
 }

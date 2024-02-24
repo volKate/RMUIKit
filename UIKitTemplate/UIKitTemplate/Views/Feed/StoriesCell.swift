@@ -39,11 +39,12 @@ final class StoriesCell: UITableViewCell {
         setupConstraints(forStoriesViews: storiesViews)
     }
 
-    func configure(withHighlights highlights: [Story]) {
+    func configure(withHighlights highlights: [Story], andDelegate delegate: StoryViewDelegate? = nil) {
         var highlightsViews: [HighlightView] = []
         for highlight in highlights {
             let highlightView = HighlightView()
             highlightView.configure(withHighlight: highlight)
+            highlightView.delegate = delegate
             contentContainerView.addSubview(highlightView)
             highlightsViews.append(highlightView)
         }

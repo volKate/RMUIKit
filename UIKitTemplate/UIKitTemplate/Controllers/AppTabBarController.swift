@@ -34,10 +34,9 @@ final class AppTabBarController: UITabBarController {
 
     private func setupTabBar() {
         setViewControllers([
-            createProfileNavigationController(),
             createFeedNavigationController(),
             createNotificationsNavigationController(),
-
+            createProfileNavigationController()
         ], animated: false)
 
         setupAppearance()
