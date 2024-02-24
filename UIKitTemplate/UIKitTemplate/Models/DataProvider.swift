@@ -39,7 +39,7 @@ struct DataProvider {
         info: AccountInfo(
             fullName: "Уставший Котик",
             description: "Младший сотрудник RM_Future 🚀",
-            link: AccountInfo.Link(text: "www.spacex.com", link: "https://www.spacex.com/vehicles/starship/")
+            link: AccountInfo.Link(text: "www.cat.com", link: "https://www.google.com/search?q=cat")
         )
     )
     /// все аккаунты

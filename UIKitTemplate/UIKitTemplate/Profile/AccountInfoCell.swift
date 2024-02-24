@@ -3,6 +3,12 @@
 
 import UIKit
 
+/// Протокол для обработки событий в ячейке AccountInfo
+protocol AccountInfoCellDelegate: AnyObject {
+    /// Обработка нажатия на ссылку в шапке
+    func profileLinkTapped(link: String)
+}
+
 /// Шапка профиля
 final class AccountInfoCell: UITableViewCell {
     // MARK: - Constants
@@ -48,11 +54,20 @@ final class AccountInfoCell: UITableViewCell {
     private lazy var linkButton: UIButton = {
         let button = UIButton(type: .system)
         button.disableAutoresizingMask()
+        button.addTarget(self, action: #selector(profileLinkTapped), for: .touchUpInside)
         return button
     }()
 
     private let userNameLabel = BaseBoldLabel()
     private let descriptionLabel = BaseLabel()
+
+    // MARK: - Public Properties
+
+    var delegate: AccountInfoCellDelegate?
+
+    // MARK: - Private Properties
+
+    private var account: Account?
 
     // MARK: - Initializers
 
@@ -69,6 +84,7 @@ final class AccountInfoCell: UITableViewCell {
     // MARK: - Public Methods
 
     func configure(withAccount account: Account) {
+        self.account = account
         publicationsStatsLabel.attributedText = makeStatsAtttributedText(
             count: account.stats.publicationsCount,
             statName: Constants.publicationsStatName
@@ -203,5 +219,11 @@ final class AccountInfoCell: UITableViewCell {
         button.configuration?.cornerStyle = .large
         button.disableAutoresizingMask()
         return button
+    }
+
+    @objc private func profileLinkTapped() {
+        if let account {
+            delegate?.profileLinkTapped(link: account.info.link.link)
+        }
     }
 }

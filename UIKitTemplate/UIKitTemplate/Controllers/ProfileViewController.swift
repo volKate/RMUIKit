@@ -107,6 +107,7 @@ extension ProfileViewController: UITableViewDataSource {
                 .dequeueReusableCell(withIdentifier: AccountInfoCell.reuseID) as? AccountInfoCell
             else { return .init() }
             cell.configure(withAccount: dataProvider.currentUserAccount)
+            cell.delegate = self
             return cell
         case .highlights:
             guard let cell = tableView
@@ -125,5 +126,16 @@ extension ProfileViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         dataProvider.profileSections.count
+    }
+}
+
+// MARK: - ProfileViewController + AccountInfoCellDelegate
+
+extension ProfileViewController: AccountInfoCellDelegate {
+    func profileLinkTapped(link: String) {
+        let profileLinkViewController = ProfileLinkViewController()
+        profileLinkViewController.configure(withLink: link)
+
+        navigationController?.present(profileLinkViewController, animated: true)
     }
 }

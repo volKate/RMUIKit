@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA37851B2B8A4092005A190A /* ProfileLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37851A2B8A4092005A190A /* ProfileLinkViewController.swift */; };
 		DA5398402B83B11D00A31E90 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53983F2B83B11D00A31E90 /* AppTabBarController.swift */; };
 		DA5398432B83B1D600A31E90 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398422B83B1D600A31E90 /* UIFont+Extension.swift */; };
 		DA5398452B83B53700A31E90 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5398442B83B53700A31E90 /* NotificationsViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA37851A2B8A4092005A190A /* ProfileLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLinkViewController.swift; sourceTree = "<group>"; };
 		DA53983F2B83B11D00A31E90 /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		DA5398422B83B1D600A31E90 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		DA5398442B83B53700A31E90 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				DA540A092B87C38300C350E2 /* PostsGridCell.swift */,
 				DA540A132B87F42C00C350E2 /* HighlightView.swift */,
 				DA540A152B87FB1400C350E2 /* PostCollectionCell.swift */,
+				DA37851A2B8A4092005A190A /* ProfileLinkViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				DA6B827D2B84BEF20045044C /* Story.swift in Sources */,
 				DA6B828D2B8509AA0045044C /* Account.swift in Sources */,
 				DA540A142B87F42C00C350E2 /* HighlightView.swift in Sources */,
+				DA37851B2B8A4092005A190A /* ProfileLinkViewController.swift in Sources */,
 				DA6B82872B84F6B20045044C /* PostFooterView.swift in Sources */,
 				DA5409FD2B8564C500C350E2 /* AvatarImageView.swift in Sources */,
 			);
