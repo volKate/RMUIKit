@@ -15,11 +15,33 @@ struct DataProvider {
         case recommendation
     }
 
+    /// Виды секций профиля
+    enum ProfileSectionType {
+        ///  Шапка профиля
+        case accountInfo
+        /// Актуальные истории
+        case highlights
+        /// Коллекция постов
+        case postsGrid
+    }
+
     /// порядок секций в ленте
     let feedSections = [FeedSectionType.stories, .firstPost, .recommendation, .posts]
 
+    /// Порядок секций в профиле
+    let profileSections = [ProfileSectionType.accountInfo, .highlights, .postsGrid]
+
     /// аккаунт залогиненного юзера
-    let currentUserAccount = Account(name: "rm_ka", avatar: "rm_ka")
+    let currentUserAccount = Account(
+        name: "rm_ka",
+        avatar: "rm_ka",
+        stats: AccountStats(publicationsCount: 67, subscribersCount: 458, subscriptionsCount: 120),
+        info: AccountInfo(
+            fullName: "Уставший Котик",
+            description: "Младший сотрудник RM_Future 🚀",
+            link: AccountInfo.Link(text: "www.cat.com", url: "https://www.google.com/search?q=cat")
+        )
+    )
     /// все аккаунты
     var accounts = [
         Account(name: "lavanda123", avatar: "lavanda"),
@@ -121,6 +143,76 @@ struct DataProvider {
                 likesCount: 201,
                 postDescription: "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
             ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
+            Post(
+                account: accounts[1],
+                postImages: ["natGeoImage1", "natGeoImage2", "natGeoImage3"],
+                likesCount: 201,
+                postDescription: """
+                В нашем птичьем кинозале сегодня смотрим отличный  фильм «Планета Птиц». \
+                Великолепные кадры, потрясающая съемка… Как они горды и прекрасны, \
+                эти крылатые создания! Мы должны их беречь!
+                """
+            ),
         ]
     }
 
@@ -142,13 +234,27 @@ struct DataProvider {
     /// все истории
     var stories: [Story] {
         [
-            Story(account: currentUserAccount, isOwn: true),
-            Story(account: accounts[1]),
-            Story(account: accounts[1]),
-            Story(account: accounts[0]),
-            Story(account: accounts[0]),
-            Story(account: accounts[0]),
-            Story(account: accounts[0])
+            Story(account: currentUserAccount, imageName: "story1", isOwn: true),
+            Story(account: accounts[1], imageName: "story2"),
+            Story(account: accounts[1], imageName: "story2"),
+            Story(account: accounts[0], imageName: "story3"),
+            Story(account: accounts[0], imageName: "story3"),
+            Story(account: accounts[0], imageName: "story3"),
+            Story(account: accounts[0], imageName: "story3")
+        ]
+    }
+
+    /// все актуальные истории
+    var highlights: [Story] {
+        [
+            Story(account: currentUserAccount, imageName: "story1", highlightName: "mood"),
+            Story(account: currentUserAccount, imageName: "story2", highlightName: "Король"),
+            Story(account: currentUserAccount, imageName: "story4", highlightName: "Отпуск"),
+            Story(account: currentUserAccount, imageName: "story5", highlightName: "Наташ"),
+            Story(account: currentUserAccount, imageName: "story1", highlightName: "mood"),
+            Story(account: currentUserAccount, imageName: "story2", highlightName: "Король"),
+            Story(account: currentUserAccount, imageName: "story4", highlightName: "Отпуск"),
+            Story(account: currentUserAccount, imageName: "story5", highlightName: "Наташ")
         ]
     }
 

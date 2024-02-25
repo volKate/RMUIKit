@@ -11,6 +11,7 @@ final class RecommendationCell: UITableViewCell {
         static let recommendationLabelText = "Рекомендуем вам"
         static let allButtonText = "Все"
     }
+
     static let reuseID = String(describing: RecommendationCell.self)
 
     // MARK: - Visual Components

@@ -11,7 +11,7 @@ final class StoryView: UIView {
         static let avatarSize = 62.0
         static let avatarCornerRadius = avatarSize / 2
         static let accountfontSize = 8.0
-        static let storyWidth = 74.0
+        static let storyWidth = 63.0
         static let ownStoryText = "Ваша история"
     }
 
