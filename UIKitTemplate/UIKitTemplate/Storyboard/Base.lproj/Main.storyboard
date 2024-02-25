@@ -20,21 +20,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2O-Nv-DS3" userLabel="LightsView">
                                 <rect key="frame" x="116.66666666666669" y="250.66666666666663" width="160" height="376"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkA-l4-lMd" userLabel="RedLightView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkA-l4-lMd" userLabel="RedLightView" customClass="CircleView" customModule="UIKitTemplate" customModuleProvider="target">
                                         <rect key="frame" x="24.999999999999986" y="15.000000000000028" width="110.00000000000001" height="110"/>
                                         <color key="backgroundColor" name="redMain"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dkA-l4-lMd" secondAttribute="height" id="K5R-jM-Jne"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-jz-cCb" userLabel="YellowLightView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-jz-cCb" userLabel="YellowLightView" customClass="CircleView" customModule="UIKitTemplate" customModuleProvider="target">
                                         <rect key="frame" x="24.999999999999986" y="133.00000000000003" width="110.00000000000001" height="110"/>
                                         <color key="backgroundColor" name="yellowMain"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IEC-jz-cCb" secondAttribute="height" id="vRQ-M2-apD"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rl-RN-2gE" userLabel="GreenLightView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Rl-RN-2gE" userLabel="GreenLightView" customClass="CircleView" customModule="UIKitTemplate" customModuleProvider="target">
                                         <rect key="frame" x="24.999999999999986" y="251" width="110.00000000000001" height="110"/>
                                         <color key="backgroundColor" name="greenMain"/>
                                         <constraints>
@@ -66,11 +66,6 @@
                             <constraint firstItem="C2O-Nv-DS3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VpW-HY-xt6"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outletCollection property="lightsViews" destination="dkA-l4-lMd" collectionClass="NSMutableArray" id="4Jo-cr-Gqa"/>
-                        <outletCollection property="lightsViews" destination="IEC-jz-cCb" collectionClass="NSMutableArray" id="B3F-WE-Oe0"/>
-                        <outletCollection property="lightsViews" destination="4Rl-RN-2gE" collectionClass="NSMutableArray" id="PNN-ae-1Gu"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,7 +74,7 @@
     </scenes>
     <resources>
         <namedColor name="blackMain">
-            <color red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="greenMain">
             <color red="0.42745098039215684" green="1" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

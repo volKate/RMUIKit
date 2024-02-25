@@ -15,25 +15,16 @@ class LightsImplementationViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private(set) lazy var lightsBaseView = makeView(withBackground: .blackMain, isAspectOne: false)
-    private(set) lazy var redLightView = makeView(withBackground: .redMain)
-    private(set) lazy var yellowLightView = makeView(withBackground: .yellowMain)
-    private(set) lazy var greenLightView = makeView(withBackground: .greenMain)
+    private(set) lazy var lightsBaseView = makeBaseView(withBackground: .blackMain)
+    private(set) lazy var redLightView = makeCircleView(withBackground: .redMain)
+    private(set) lazy var yellowLightView = makeCircleView(withBackground: .yellowMain)
+    private(set) lazy var greenLightView = makeCircleView(withBackground: .greenMain)
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        for lightsView in [redLightView, yellowLightView, greenLightView] {
-            lightsView.setNeedsLayout()
-            lightsView.layoutIfNeeded()
-            lightsView.layer.cornerRadius = lightsView.frame.width / 2
-        }
     }
 
     // MARK: - Public Methods
@@ -52,13 +43,18 @@ class LightsImplementationViewController: UIViewController {
 
     // MARK: - Private Methods
 
-    private func makeView(withBackground backgroundcolor: UIColor, isAspectOne: Bool = true) -> UIView {
+    private func makeBaseView(withBackground backgroundColor: UIColor) -> UIView {
         let view = UIView()
-        view.backgroundColor = backgroundcolor
+        view.backgroundColor = backgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
-        if isAspectOne {
-            view.widthAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-        }
+        return view
+    }
+
+    private func makeCircleView(withBackground backgroundColor: UIColor) -> CircleView {
+        let view = CircleView()
+        view.backgroundColor = backgroundColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         return view
     }
 }

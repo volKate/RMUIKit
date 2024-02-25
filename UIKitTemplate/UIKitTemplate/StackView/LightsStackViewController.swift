@@ -6,6 +6,7 @@ import UIKit
 /// Имплементация светофора на StackView
 final class LightsStackViewController: LightsImplementationViewController {
     // MARK: - Visual Components
+
     private lazy var lightsBaseStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [redLightView, yellowLightView, greenLightView])
         stackView.axis = .vertical
@@ -16,6 +17,7 @@ final class LightsStackViewController: LightsImplementationViewController {
     }()
 
     // MARK: - Public Methods
+
     override func setupView() {
         lightsBaseView.addSubview(lightsBaseStackView)
         view.addSubview(lightsBaseView)

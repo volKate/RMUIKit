@@ -13,6 +13,7 @@
 		DA3785162B8A31F8005A190A /* LightsImplementationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */; };
 		DA3785192B8A3426005A190A /* LightsConstraintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3785182B8A3426005A190A /* LightsConstraintsViewController.swift */; };
 		DA3785202B8B9418005A190A /* LightsStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA37851F2B8B9418005A190A /* LightsStackViewController.swift */; };
+		DA3785222B8BE47F005A190A /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3785212B8BE47F005A190A /* CircleView.swift */; };
 		DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CEF2B71802900F71686 /* AppDelegate.swift */; };
 		DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF12B71802900F71686 /* SceneDelegate.swift */; };
 		DAFE7CF42B71802900F71686 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE7CF32B71802900F71686 /* MenuViewController.swift */; };
@@ -28,6 +29,7 @@
 		DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsImplementationViewController.swift; sourceTree = "<group>"; };
 		DA3785182B8A3426005A190A /* LightsConstraintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsConstraintsViewController.swift; sourceTree = "<group>"; };
 		DA37851F2B8B9418005A190A /* LightsStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsStackViewController.swift; sourceTree = "<group>"; };
+		DA3785212B8BE47F005A190A /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		DAFE7CEC2B71802900F71686 /* UIKitTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE7CEF2B71802900F71686 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFE7CF12B71802900F71686 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		DA3785112B8A278A005A190A /* App */ = {
 			isa = PBXGroup;
 			children = (
+				DAFE7CFD2B71802C00F71686 /* Info.plist */,
 				DAFE7CEF2B71802900F71686 /* AppDelegate.swift */,
 				DAFE7CF12B71802900F71686 /* SceneDelegate.swift */,
 			);
@@ -99,6 +102,15 @@
 			path = StackView;
 			sourceTree = "<group>";
 		};
+		DA3785232B8BF023005A190A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */,
+				DA3785212B8BE47F005A190A /* CircleView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		DAFE7CE32B71802900F71686 = {
 			isa = PBXGroup;
 			children = (
@@ -124,11 +136,10 @@
 				DA3785142B8A27D1005A190A /* Anchors */,
 				DA3785172B8A340D005A190A /* Constraints */,
 				DA37851E2B8B93E9005A190A /* StackView */,
+				DA3785232B8BF023005A190A /* Shared */,
 				DAFE7CF32B71802900F71686 /* MenuViewController.swift */,
-				DA3785152B8A31F8005A190A /* LightsImplementationViewController.swift */,
 				DAFE7CF82B71802C00F71686 /* Assets.xcassets */,
 				DAFE7CFA2B71802C00F71686 /* LaunchScreen.storyboard */,
-				DAFE7CFD2B71802C00F71686 /* Info.plist */,
 			);
 			path = UIKitTemplate;
 			sourceTree = "<group>";
@@ -255,6 +266,7 @@
 				DA3785192B8A3426005A190A /* LightsConstraintsViewController.swift in Sources */,
 				DA3785102B8A2780005A190A /* LightsAnchorsViewController.swift in Sources */,
 				DA3785162B8A31F8005A190A /* LightsImplementationViewController.swift in Sources */,
+				DA3785222B8BE47F005A190A /* CircleView.swift in Sources */,
 				DAFE7CF02B71802900F71686 /* AppDelegate.swift in Sources */,
 				DA37850C2B890F5D005A190A /* LightsStoryboardViewController.swift in Sources */,
 				DAFE7CF22B71802900F71686 /* SceneDelegate.swift in Sources */,
@@ -412,7 +424,7 @@
 				DEVELOPMENT_TEAM = 6352LWX99R;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UIKitTemplate/Info.plist;
+				INFOPLIST_FILE = UIKitTemplate/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -440,7 +452,7 @@
 				DEVELOPMENT_TEAM = 6352LWX99R;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = UIKitTemplate/Info.plist;
+				INFOPLIST_FILE = UIKitTemplate/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
