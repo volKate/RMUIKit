@@ -63,7 +63,7 @@ final class AccountInfoCell: UITableViewCell {
 
     // MARK: - Public Properties
 
-    var delegate: AccountInfoCellDelegate?
+    weak var delegate: AccountInfoCellDelegate?
 
     // MARK: - Private Properties
 
@@ -223,7 +223,7 @@ final class AccountInfoCell: UITableViewCell {
 
     @objc private func profileLinkTapped() {
         if let account {
-            delegate?.profileLinkTapped(link: account.info.link.link)
+            delegate?.profileLinkTapped(link: account.info.link.url)
         }
     }
 }

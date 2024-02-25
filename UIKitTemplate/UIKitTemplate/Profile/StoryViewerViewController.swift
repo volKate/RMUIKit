@@ -13,13 +13,12 @@ final class StoryViewerViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private let timerSlider: UISlider = {
-        let slider = UISlider()
-        slider.maximumTrackTintColor = .grayMain
-        slider.minimumTrackTintColor = .whiteMain
-        slider.setThumbImage(UIImage(), for: .normal)
-        slider.disableAutoresizingMask()
-        return slider
+    private let timerProgressView: UIProgressView = {
+        let progress = UIProgressView()
+        progress.progressTintColor = .whiteMain
+        progress.trackTintColor = .grayMain
+        progress.disableAutoresizingMask()
+        return progress
     }()
 
     private let storyImageView: UIImageView = {
@@ -66,8 +65,8 @@ final class StoryViewerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { [weak self] timer in
-            if self?.timerSlider.value != 1 {
-                self?.timerSlider.value += 0.005
+            if self?.timerProgressView.progress != 1 {
+                self?.timerProgressView.progress += 0.005
             } else {
                 timer.invalidate()
                 self?.closeViewer()
@@ -91,23 +90,37 @@ final class StoryViewerViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupView() {
-        view.addSubviews(storyImageView, timerSlider, storyThumbnailView, storyNameLabel, closeButton)
+        view.addSubviews(storyImageView, timerProgressView, storyThumbnailView, storyNameLabel, closeButton)
         setupConstraints()
     }
 
     private func setupConstraints() {
+        setupSoryImageConstraints()
+        setupProgressConstraints()
+        setupStoryInfoConstraints()
+    }
+
+    private func setupSoryImageConstraints() {
         [
             storyImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             storyImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             storyImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            storyImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            storyImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ].activate()
+    }
 
-            timerSlider.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
-            timerSlider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            view.trailingAnchor.constraint(equalTo: timerSlider.trailingAnchor, constant: 5),
+    private func setupProgressConstraints() {
+        [
+            timerProgressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
+            timerProgressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            view.trailingAnchor.constraint(equalTo: timerProgressView.trailingAnchor, constant: 5)
+        ].activate()
+    }
 
+    private func setupStoryInfoConstraints() {
+        [
             storyThumbnailView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            storyThumbnailView.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 9),
+            storyThumbnailView.topAnchor.constraint(equalTo: timerProgressView.bottomAnchor, constant: 9),
             storyNameLabel.leadingAnchor.constraint(equalTo: storyThumbnailView.trailingAnchor, constant: 7),
             storyNameLabel.centerYAnchor.constraint(equalTo: storyThumbnailView.centerYAnchor),
             view.trailingAnchor.constraint(equalTo: closeButton.trailingAnchor, constant: 5),

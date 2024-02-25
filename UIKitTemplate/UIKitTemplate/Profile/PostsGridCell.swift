@@ -17,7 +17,7 @@ final class PostsGridCell: UITableViewCell {
     // MARK: - Visual Components
 
     private lazy var postsCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: makeFlowLayout())
         collectionView.disableAutoresizingMask()
         collectionView.register(PostCollectionCell.self, forCellWithReuseIdentifier: PostCollectionCell.reuseID)
         collectionView.isScrollEnabled = false
@@ -76,6 +76,8 @@ final class PostsGridCell: UITableViewCell {
 
     private func makeFlowLayout() -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 1.5
+        flowLayout.minimumInteritemSpacing = 1.5
         return flowLayout
     }
 }
@@ -101,6 +103,8 @@ extension PostsGridCell: UICollectionViewDataSource {
     }
 }
 
+// MARK: - PostsGridCell + UICollectionViewDelegateFlowLayout
+
 extension PostsGridCell: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -110,21 +114,5 @@ extension PostsGridCell: UICollectionViewDelegateFlowLayout {
         let availableWidth = contentView.frame.width - Constants.itemsSpacing * (Constants.itemsPerRow - 1)
         let width = availableWidth / Constants.itemsPerRow
         return CGSize(width: width, height: width)
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumLineSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        Constants.itemsSpacing
-    }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        minimumInteritemSpacingForSectionAt section: Int
-    ) -> CGFloat {
-        Constants.itemsSpacing
     }
 }

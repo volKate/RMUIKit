@@ -40,7 +40,7 @@ final class HighlightView: UIView {
 
     // MARK: - Public Properties
 
-    var delegate: StoryViewDelegate?
+    weak var delegate: StoryViewDelegate?
 
     // MARK: - Private Properties
 
@@ -60,10 +60,10 @@ final class HighlightView: UIView {
 
     // MARK: - Public Methods
 
-    func configure(withHighlight highlight: Story) {
-        self.highlight = highlight
-        avatarImageView.image = UIImage(named: highlight.imageName)
-        highlightNameLabel.text = highlight.highlightName
+    func configure(withStory story: Story) {
+        highlight = story
+        avatarImageView.image = UIImage(named: story.imageName)
+        highlightNameLabel.text = story.highlightName
     }
 
     // MARK: - Private Methods

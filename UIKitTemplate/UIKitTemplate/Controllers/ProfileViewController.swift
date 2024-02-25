@@ -113,7 +113,7 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: StoriesCell.reuseID) as? StoriesCell
             else { return .init() }
-            cell.configure(withHighlights: dataProvider.highlights, andDelegate: self)
+            cell.configure(withHighlights: dataProvider.highlights, delegate: self)
             return cell
 
         case .postsGrid:
@@ -136,7 +136,7 @@ extension ProfileViewController: AccountInfoCellDelegate {
         let profileLinkViewController = ProfileLinkViewController()
         profileLinkViewController.configure(withLink: link)
 
-        navigationController?.present(profileLinkViewController, animated: true)
+        present(profileLinkViewController, animated: true)
     }
 }
 
@@ -147,6 +147,6 @@ extension ProfileViewController: StoryViewDelegate {
         let storyViewerViewController = StoryViewerViewController()
         storyViewerViewController.configure(withStory: story)
         storyViewerViewController.modalPresentationStyle = .fullScreen
-        navigationController?.present(storyViewerViewController, animated: true)
+        present(storyViewerViewController, animated: true)
     }
 }

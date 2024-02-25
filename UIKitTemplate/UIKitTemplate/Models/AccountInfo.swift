@@ -15,20 +15,15 @@ struct AccountInfo {
         /// Текст ссылки
         let text: String
         /// Url ссылки
-        let link: String
+        let url: String
 
-        init() {
-            text = ""
-            link = ""
+        init(url: String = "") {
+            text = url
+            self.url = url
         }
 
-        init(link: String) {
-            text = link
-            self.link = link
-        }
-
-        init(text: String, link: String) {
-            self.link = link
+        init(text: String, url: String) {
+            self.url = url
             self.text = text
         }
     }
