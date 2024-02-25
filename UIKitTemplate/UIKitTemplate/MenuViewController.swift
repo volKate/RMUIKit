@@ -82,6 +82,9 @@ extension MenuViewController: UITableViewDelegate {
         case .nsConstraints:
             let lightsConstraintsViewController = LightsConstraintsViewController()
             navigationController?.pushViewController(lightsConstraintsViewController, animated: true)
+        case .stackView:
+            let lightsStackViewController = LightsStackViewController()
+            navigationController?.pushViewController(lightsStackViewController, animated: true)
         default:
             break
         }

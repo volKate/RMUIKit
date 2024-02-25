@@ -40,9 +40,7 @@ class LightsImplementationViewController: UIViewController {
 
     func setupConstraints() {}
 
-    // MARK: - Private Methods
-
-    private func setupView() {
+    func setupView() {
         [
             redLightView,
             yellowLightView,
@@ -51,6 +49,8 @@ class LightsImplementationViewController: UIViewController {
         view.addSubview(lightsBaseView)
         setupConstraints()
     }
+
+    // MARK: - Private Methods
 
     private func makeView(withBackground backgroundcolor: UIColor, isAspectOne: Bool = true) -> UIView {
         let view = UIView()
